@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "DicodingIntermediate"
-include ':app'
+include("app")
