@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "DicodingIntermediate"
 include("app")
 include(":core")
+include(":commons")
