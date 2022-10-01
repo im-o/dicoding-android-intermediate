@@ -1,41 +1,74 @@
+import dependencies.MyDependencies
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
+    id("com.google.dagger.hilt.android")
+    kotlin("kapt")
 }
 
 android {
-    compileSdk = 33
+    compileSdk = Versions.compile_sdk
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 33
+        minSdk = Versions.min_sdk
+        targetSdk = Versions.target_sdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            buildConfigField("String", "BASE_URL", "\"https://story-api.dicoding.dev/v1/\"")
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            buildConfigField("String", "BASE_URL", "\"https://story-api.dicoding.dev/v1/\"")
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
+
+    kapt {
+        correctErrorTypes = true
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
     namespace = "com.rivaldy.id.core"
 }
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.6.1")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    // DEFAULT DEPENDENCIES
+    api(MyDependencies.core_ktx)
+    api(MyDependencies.appcompat)
+    api(MyDependencies.material)
+    testImplementation(MyDependencies.junit)
+    androidTestImplementation(MyDependencies.test_ext_junit)
+    androidTestImplementation(MyDependencies.espresso_core)
+
+    // REMOTE
+    api(MyDependencies.retrofit)
+    api(MyDependencies.retrofit2_converter_gson)
+    api(MyDependencies.retrofit2_adapter_rxjava2)
+    api(MyDependencies.okhttp3)
+
+    // Hilt
+    api(MyDependencies.hilt_android)
+    kapt(MyDependencies.hilt_android_compiler)
 }
