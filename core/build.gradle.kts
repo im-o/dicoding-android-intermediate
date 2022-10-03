@@ -4,8 +4,8 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
-    id("com.google.dagger.hilt.android")
-    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
 }
 
 android {
@@ -32,28 +32,23 @@ android {
         }
     }
 
-    java {
+    compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
-
     kapt {
         correctErrorTypes = true
     }
-
     buildFeatures {
         viewBinding = true
     }
-
     namespace = "com.rivaldy.id.core"
 }
 
 dependencies {
-
     // DEFAULT DEPENDENCIES
     api(MyDependencies.core_ktx)
     api(MyDependencies.appcompat)
@@ -69,6 +64,12 @@ dependencies {
     api(MyDependencies.okhttp3)
 
     // Hilt
-    api(MyDependencies.hilt_android)
+    implementation(MyDependencies.hilt_android)
     kapt(MyDependencies.hilt_android_compiler)
+    api(MyDependencies.hilt_navigation) {
+        exclude("androidx.lifecycle", "lifecycle-viewmodel-ktx")
+    }
+
+    // LIFECYCLE VIEWMODEL
+    api(MyDependencies.lifecycle_viewmodel)
 }

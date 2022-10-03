@@ -3,7 +3,6 @@ package dependencies
 /** Created by github.com/im-o on 10/1/2022. */
 
 object MyDependencies {
-
     // DEFAULT DEPENDENCIES
     const val core_ktx = "androidx.core:core-ktx:${Versions.core_ktx_version}"
     const val appcompat = "androidx.appcompat:appcompat:${Versions.app_compat_version}"
@@ -21,4 +20,6 @@ object MyDependencies {
     //Hilt
     const val hilt_android = "com.google.dagger:hilt-android:${Versions.hilt_android}"
     const val hilt_android_compiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt_android}"
+    const val hilt_navigation = "androidx.hilt:hilt-navigation-fragment:${Versions.hilt_navigation}"
+    const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle_ktx_version}"
 }
