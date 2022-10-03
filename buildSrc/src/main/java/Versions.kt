@@ -19,5 +19,7 @@ object Versions {
 
     const val retrofit_version = "2.9.0"
     const val okHttp3_version = "4.9.0"
-    const val hilt_android = "2.44"
+    const val hilt_android = "2.38.1"
+    const val hilt_navigation = "1.0.0"
+    const val lifecycle_ktx_version = "2.5.1"
 }

@@ -1,6 +1,10 @@
+import dependencies.MyDependencies
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
 }
 
 android {
@@ -23,23 +27,27 @@ android {
         }
     }
 
-    java {
+    compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
-
+    kapt {
+        correctErrorTypes = true
+    }
     buildFeatures {
         viewBinding = true
     }
-
     namespace = "com.rivaldy.id.dicoding"
 }
 
 dependencies {
     implementation(project(Modules.commons))
     implementation(project(Modules.core))
+
+    // Hilt
+    implementation(MyDependencies.hilt_android)
+    kapt(MyDependencies.hilt_android_compiler)
 }
