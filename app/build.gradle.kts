@@ -47,6 +47,11 @@ dependencies {
     implementation(project(Modules.commons))
     implementation(project(Modules.core))
 
+    // DEFAULT DEPENDENCIES
+    testImplementation(MyDependencies.junit)
+    androidTestImplementation(MyDependencies.test_ext_junit)
+    androidTestImplementation(MyDependencies.espresso_core)
+
     // Hilt
     implementation(MyDependencies.hilt_android)
     kapt(MyDependencies.hilt_android_compiler)
