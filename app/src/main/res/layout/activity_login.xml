@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.auth.login.LoginActivity">
+
+    <com.rivaldy.id.commons.widget.input.RegularInputEditText
+        android:id="@+id/nameTIL"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_50"
+        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginTop="@dimen/space_16"
+        android:layout_marginEnd="@dimen/space_16"
+        android:background="@drawable/bg_input_layout"
+        android:hint="@string/name"
+        android:paddingHorizontal="@dimen/space_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.rivaldy.id.commons.widget.input.EmailInputEditText
+        android:id="@+id/emailTIL"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_50"
+        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginTop="@dimen/space_16"
+        android:layout_marginEnd="@dimen/space_16"
+        android:background="@drawable/bg_input_layout"
+        android:hint="@string/email"
+        android:paddingHorizontal="@dimen/space_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameTIL" />
+
+    <com.rivaldy.id.commons.widget.input.PasswordInputEditText
+        android:id="@+id/passwordTIL"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_50"
+        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginTop="@dimen/space_16"
+        android:layout_marginEnd="@dimen/space_16"
+        android:background="@drawable/bg_input_layout"
+        android:hint="@string/password"
+        android:paddingHorizontal="@dimen/space_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailTIL" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
