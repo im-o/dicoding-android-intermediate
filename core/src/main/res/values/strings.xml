@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="retry">Retry</string>
-    <string name="no_internet">No internet connection</string>
+    <string name="no_internet_connection">No internet connection</string>
     <string name="fetch_failed">Failed Fetching API</string>
-    <string name="some_error">Some Error</string>
+    <string name="something_error">Something Error!</string>
 </resources>

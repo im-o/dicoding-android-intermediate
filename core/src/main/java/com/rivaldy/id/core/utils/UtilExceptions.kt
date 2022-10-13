@@ -7,7 +7,6 @@ import com.rivaldy.id.core.R
 import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.core.data.network.ErrorResponse
 import com.rivaldy.id.core.utils.UtilConstants.OTHER_ERROR
-import com.rivaldy.id.core.utils.UtilExtensions.showSnackBar
 import com.rivaldy.id.core.utils.UtilFunctions.logE
 import java.io.IOException
 
@@ -16,27 +15,23 @@ import java.io.IOException
 object UtilExceptions {
     class NoInternetException(message: String) : IOException(message)
 
-    fun Activity.handleApiError(
-        failure: DataResource.Failure,
-        retry: (() -> Unit)? = null
-    ) {
+    fun Activity.handleApiError(failure: DataResource.Failure): String {
+        var errorMessage = ""
         logE("NoInternetException : $failure")
         if (failure.isNetworkError) {
-            if (failure.errorCode == OTHER_ERROR) window.decorView.rootView.showSnackBar(failure.otherMessage.toString(), retry)
-            else window.decorView.rootView.showSnackBar(getString(R.string.no_internet), retry)
+            errorMessage = if (failure.errorCode == OTHER_ERROR) failure.otherMessage.toString() else getString(R.string.no_internet_connection)
         } else {
             try {
                 val gson = Gson()
                 val type = object : TypeToken<ErrorResponse>() {}.type
                 val errorResponse: ErrorResponse? = gson.fromJson(failure.errorBody?.charStream(), type)
-                if (failure.errorCode == 401) {
-                    window.decorView.rootView.showSnackBar(errorResponse?.message ?: getString(R.string.fetch_failed), retry)
-                } else window.decorView.rootView.showSnackBar(errorResponse?.message ?: getString(R.string.some_error))
+                errorMessage = if (failure.errorCode == 401) errorResponse?.message ?: getString(R.string.fetch_failed) else errorResponse?.message ?: getString(R.string.something_error)
                 logE("ErrorResponse NoInternetException: $errorResponse")
             } catch (e: Exception) {
                 e.printStackTrace()
             }
 
         }
+        return errorMessage
     }
 }
