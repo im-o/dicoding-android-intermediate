@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">DicodingIntermediate</string>
+    <string name="app_name">Dicoding Igram</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="create_account">Create a new account</string>
+    <string name="have_account">Have an account</string>
+    <string name="hello_welcome_back">Hello,\nWelcome Back</string>
+    <string name="login_thumbnail">Login Thumbnail</string>
+    <string name="or">Or</string>
+    <string name="sign_in">Sign in.</string>
+    <string name="sign_up">Sign up.</string>
+    <string name="no_have_account">Don\'t have an account?</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="dummy_password">rival123</string>
+    <string name="dummy_email">rival@gmail.com</string>
+    <string name="name_cannot_empty">Name cannot be empty</string>
+    <string name="dummy_name">Rivaldy</string>
 </resources>
