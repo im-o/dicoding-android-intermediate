@@ -40,7 +40,6 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    namespace = "com.rivaldy.id.dicoding"
 }
 
 dependencies {
