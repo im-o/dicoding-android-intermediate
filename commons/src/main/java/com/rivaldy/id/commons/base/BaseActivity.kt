@@ -9,13 +9,14 @@ import com.rivaldy.id.commons.view.LoadingProgressDialog
 /** Created by github.com/im-o on 10/1/2022. */
 
 abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
-    private lateinit var binding: VB
+    lateinit var binding: VB
     private val progressDialog: Dialog by lazy { LoadingProgressDialog.setProgressDialog(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = getViewBinding()
         setContentView(binding.root)
+        initData()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -25,8 +26,10 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
     abstract fun getViewBinding(): VB
 
-    protected fun showLoading(isShown: Boolean) {
-        if (isShown) showProgressDialog()
+    abstract fun initData()
+
+    protected fun showLoading(isLoading: Boolean) {
+        if (isLoading) showProgressDialog()
         else hideProgressDialog()
     }
 
