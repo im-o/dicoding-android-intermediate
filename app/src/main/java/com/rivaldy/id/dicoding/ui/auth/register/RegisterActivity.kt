@@ -40,7 +40,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
     private fun initObservers() {
         viewModel.loginUser.observe(this) {
             when (it) {
-                is DataResource.Loading -> showLoading(true)
+                is DataResource.Loading -> showLoading(true, isCancelable = false)
                 is DataResource.Success -> showLoginSuccess(it.value.loginResult)
                 is DataResource.Failure -> showFailure(it)
             }
