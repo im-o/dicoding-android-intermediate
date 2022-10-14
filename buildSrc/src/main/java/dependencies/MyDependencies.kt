@@ -22,4 +22,14 @@ object MyDependencies {
     const val hilt_android_compiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt_android}"
     const val hilt_navigation = "androidx.hilt:hilt-navigation-fragment:${Versions.hilt_navigation}"
     const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle_ktx_version}"
+
+    //Splash Screen
+    const val splash_screen = "androidx.core:core-splashscreen:${Versions.splash_screen_version}"
+
+    //Facebook Shimmer
+    const val facebook_shimmer = "com.facebook.shimmer:shimmer:${Versions.facebook_shimmer_version}"
+
+    //Glide
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide_version}"
+    const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide_version}"
 }

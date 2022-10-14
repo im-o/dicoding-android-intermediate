@@ -54,4 +54,10 @@ dependencies {
     // Hilt
     implementation(MyDependencies.hilt_android)
     kapt(MyDependencies.hilt_android_compiler)
+
+    // Splash Screen
+    implementation(MyDependencies.splash_screen)
+
+    // Glide
+    annotationProcessor(MyDependencies.glide_compiler)
 }

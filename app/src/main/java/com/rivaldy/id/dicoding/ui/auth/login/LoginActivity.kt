@@ -13,14 +13,16 @@ import com.rivaldy.id.core.utils.UtilExtensions.openActivity
 import com.rivaldy.id.core.utils.UtilExtensions.showSnackBar
 import com.rivaldy.id.dicoding.R
 import com.rivaldy.id.dicoding.databinding.ActivityLoginBinding
-import com.rivaldy.id.dicoding.ui.MainActivity
 import com.rivaldy.id.dicoding.ui.MainViewModel
+import com.rivaldy.id.dicoding.ui.auth.AuthViewModel
 import com.rivaldy.id.dicoding.ui.auth.register.RegisterActivity
+import com.rivaldy.id.dicoding.ui.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
-    private val viewModel by viewModels<MainViewModel>()
+    private val viewModel by viewModels<AuthViewModel>()
+    private val mainViewModel by viewModels<MainViewModel>()
 
     override fun getViewBinding() = ActivityLoginBinding.inflate(layoutInflater)
 
@@ -69,8 +71,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     private fun showLoginSuccess(loginResult: LoginResult?) {
         showLoading(false)
-        viewModel.setLoginInfo(LoginInfo(loginResult?.userId, loginResult?.token, binding.emailET.text.toString(), loginResult?.name))
-        openActivity(MainActivity::class.java)
+        mainViewModel.setLoginInfo(LoginInfo(loginResult?.userId, loginResult?.token, binding.emailET.text.toString(), loginResult?.name))
+        openActivity(HomeActivity::class.java)
         finish()
     }
 

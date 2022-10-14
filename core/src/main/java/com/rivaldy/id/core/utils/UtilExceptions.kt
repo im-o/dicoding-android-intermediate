@@ -4,8 +4,8 @@ import android.app.Activity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.rivaldy.id.core.R
+import com.rivaldy.id.core.data.model.remote.DefaultResponse
 import com.rivaldy.id.core.data.network.DataResource
-import com.rivaldy.id.core.data.network.ErrorResponse
 import com.rivaldy.id.core.utils.UtilConstants.OTHER_ERROR
 import com.rivaldy.id.core.utils.UtilFunctions.logE
 import java.io.IOException
@@ -23,10 +23,10 @@ object UtilExceptions {
         } else {
             try {
                 val gson = Gson()
-                val type = object : TypeToken<ErrorResponse>() {}.type
-                val errorResponse: ErrorResponse? = gson.fromJson(failure.errorBody?.charStream(), type)
-                errorMessage = if (failure.errorCode == 401) errorResponse?.message ?: getString(R.string.fetch_failed) else errorResponse?.message ?: getString(R.string.something_error)
-                logE("ErrorResponse NoInternetException: $errorResponse")
+                val type = object : TypeToken<DefaultResponse>() {}.type
+                val defaultResponse: DefaultResponse? = gson.fromJson(failure.errorBody?.charStream(), type)
+                errorMessage = if (failure.errorCode == 401) defaultResponse?.message ?: getString(R.string.fetch_failed) else defaultResponse?.message ?: getString(R.string.something_error)
+                logE("ErrorResponse NoInternetException: $defaultResponse")
             } catch (e: Exception) {
                 e.printStackTrace()
             }

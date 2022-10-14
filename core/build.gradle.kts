@@ -23,12 +23,12 @@ android {
         debug {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            buildConfigField("String", "BASE_URL", "\"https://story-api.dicoding.dev/v1/\"")
+            buildConfigField("String", "BASE_URL", "\"https://story-api.dicoding.dev\"")
         }
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            buildConfigField("String", "BASE_URL", "\"https://story-api.dicoding.dev/v1/\"")
+            buildConfigField("String", "BASE_URL", "\"https://story-api.dicoding.dev\"")
         }
     }
 
@@ -72,4 +72,11 @@ dependencies {
 
     // LIFECYCLE VIEWMODEL
     api(MyDependencies.lifecycle_viewmodel)
+
+    // FACEBOOK SHIMMER
+    api(MyDependencies.facebook_shimmer)
+
+    // GLIDE
+    api(MyDependencies.glide)
+    annotationProcessor(MyDependencies.glide_compiler)
 }

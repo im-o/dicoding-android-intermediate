@@ -15,4 +15,6 @@
     <string name="dummy_email">rival@gmail.com</string>
     <string name="name_cannot_empty">Name cannot be empty</string>
     <string name="dummy_name">Rivaldy</string>
+    <string name="image_story">Image story</string>
+    <string name="no_story_showed">No story showed!</string>
 </resources>

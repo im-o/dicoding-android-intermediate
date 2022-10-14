@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/space_8"
+    android:layout_marginVertical="@dimen/space_4"
+    app:cardCornerRadius="@dimen/space_3"
+    app:cardElevation="@dimen/space_0"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/shimmerBackgroundLow">
+
+        <View
+            android:id="@+id/nameTV"
+            android:layout_width="@dimen/space_200"
+            android:layout_height="@dimen/space_16"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@color/shimmerBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/photoIV"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_160"
+            android:layout_marginTop="12dp"
+            android:background="@color/shimmerBackground"
+            android:contentDescription="@string/image_story"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameTV" />
+
+        <View
+            android:id="@+id/descriptionTV"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_10"
+            android:layout_marginStart="@dimen/space_12"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@color/shimmerBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/photoIV" />
+
+        <View
+            android:id="@+id/description1TV"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_10"
+            android:layout_marginStart="@dimen/space_12"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="48dp"
+            android:background="@color/shimmerBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionTV" />
+
+        <View
+            android:id="@+id/description2TV"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_12"
+            android:layout_marginStart="@dimen/space_12"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="48dp"
+            android:background="@color/shimmerBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description1TV" />
+
+        <View
+            android:id="@+id/dateCreatedTV"
+            android:layout_width="@dimen/space_100"
+            android:layout_height="@dimen/space_8"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@color/shimmerBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description2TV"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

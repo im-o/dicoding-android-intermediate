@@ -28,13 +28,14 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
     abstract fun initData()
 
-    protected fun showLoading(isLoading: Boolean) {
-        if (isLoading) showProgressDialog()
+    protected fun showLoading(isLoading: Boolean, isCancelable: Boolean = true) {
+        if (isLoading) showProgressDialog(isCancelable)
         else hideProgressDialog()
     }
 
-    private fun showProgressDialog() {
+    private fun showProgressDialog(isCancelable: Boolean) {
         hideProgressDialog()
+        progressDialog.setCancelable(isCancelable)
         progressDialog.show()
     }
 
