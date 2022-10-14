@@ -25,4 +25,11 @@ object MyDependencies {
 
     //Splash Screen
     const val splash_screen = "androidx.core:core-splashscreen:${Versions.splash_screen_version}"
+
+    //Facebook Shimmer
+    const val facebook_shimmer = "com.facebook.shimmer:shimmer:${Versions.facebook_shimmer_version}"
+
+    //Glide
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide_version}"
+    const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide_version}"
 }
