@@ -12,11 +12,13 @@ object UtilConstants {
     const val FILTER_BY_ALCOHOLIC = "FILTER_BY_ALCOHOLIC"
     const val FILTER_BY_GLASSES = "FILTER_BY_GLASSES"
 
-    //INT
+    // INT
     const val OTHER_ERROR = 999
     const val ZERO_DATA = 0
     const val DEFAULT_LIMIT_PAGE = 10
     const val TIME_OUT_CONNECTION: Long = 30
 
-    //
+    // DATE FORMAT
+    const val DATE_FORMAT_SERVER = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+    const val DATE_FORMAT_VIEW = "dd MMMM yyyy"
 }

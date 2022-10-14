@@ -11,9 +11,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorBackground">#FAFAFA</color>
 
+    <color name="shimmerBackground">#C3C0C0</color>
+    <color name="shimmerBackgroundLow">#DDDDDD</color>
     <color name="colorText">#757575</color>
+    <color name="colorTextLow">#9E9EB1</color>
     <color name="colorDivider">#BDBDBD</color>
     <color name="colorDividerLow">#6FBDBDBD</color>
-    <color name="colorDividerLowVery">#22BDBDBD</color>
+    <color name="colorDividerVeryLow">#22BDBDBD</color>
 </resources>
