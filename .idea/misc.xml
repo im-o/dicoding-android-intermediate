@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ANDROID-DEV/MY-PROJECT/DicodingIntermediate/app/src/main/res/drawable/ic_launcher_background.xml" value="0.263" />
         <entry key="..\:/ANDROID-DEV/MY-PROJECT/DicodingIntermediate/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/ANDROID-DEV/MY-PROJECT/DicodingIntermediate/app/src/main/res/layout/activity_main.xml" value="0.371875" />
         <entry key="..\:/ANDROID-DEV/MY-PROJECT/DicodingIntermediate/app/src/main/res/layout/activity_register.xml" value="0.36770833333333336" />
+        <entry key="..\:/ANDROID-DEV/MY-PROJECT/DicodingIntermediate/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.263" />
         <entry key="..\:/ANDROID-DEV/MY-PROJECT/DicodingIntermediate/commons/src/main/res/drawable/bg_input_layout.xml" value="0.225" />
         <entry key="..\:/ANDROID-DEV/MY-PROJECT/DicodingIntermediate/commons/src/main/res/drawable/ic_baseline_clear_24.xml" value="0.235" />
         <entry key="..\:/ANDROID-DEV/MY-PROJECT/DicodingIntermediate/commons/src/main/res/drawable/ic_baseline_error_24.xml" value="0.235" />

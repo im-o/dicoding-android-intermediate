@@ -22,4 +22,5 @@ object Versions {
     const val hilt_android = "2.38.1"
     const val hilt_navigation = "1.0.0"
     const val lifecycle_ktx_version = "2.5.1"
+    const val splash_screen_version = "1.0.0"
 }

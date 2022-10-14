@@ -45,6 +45,9 @@ android {
 dependencies {
     implementation(project(Modules.commons))
     implementation(project(Modules.core))
+    implementation("androidx.appcompat:appcompat:1.5.1")
+    implementation("com.google.android.material:material:1.6.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     // DEFAULT DEPENDENCIES
     testImplementation(MyDependencies.junit)
@@ -54,4 +57,7 @@ dependencies {
     // Hilt
     implementation(MyDependencies.hilt_android)
     kapt(MyDependencies.hilt_android_compiler)
+
+    // Splash Screen
+    implementation(MyDependencies.splash_screen)
 }
