@@ -19,6 +19,6 @@ object UtilConstants {
     const val TIME_OUT_CONNECTION: Long = 30
 
     // DATE FORMAT
-    const val DATE_FORMAT_SERVER = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-    const val DATE_FORMAT_VIEW = "dd MMMM yyyy"
+    const val DATE_FORMAT_SERVER = "yyyy-MM-dd'T'HH:mm:ss.SSSZ" //2022-10-15T06:23:55.076Z
+    const val DATE_FORMAT_VIEW = "EEE, dd MMMM yyyy, HH:mm"
 }
