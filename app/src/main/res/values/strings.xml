@@ -12,9 +12,10 @@
     <string name="no_have_account">Don\'t have an account?</string>
     <string name="already_have_account">Already have an account?</string>
     <string name="dummy_password">rival123</string>
-    <string name="dummy_email">rival@gmail.com</string>
+    <string name="dummy_email">rivaldy@gmail.com</string>
     <string name="name_cannot_empty">Name cannot be empty</string>
-    <string name="dummy_name">Rivaldy</string>
+    <string name="dummy_name">Hello, Im Guest.</string>
     <string name="image_story">Image story</string>
     <string name="no_story_showed">No story showed!</string>
+    <string name="see_location">See Location</string>
 </resources>
