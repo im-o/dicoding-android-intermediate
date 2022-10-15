@@ -7,9 +7,10 @@ import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.snackbar.Snackbar
 import com.rivaldy.id.core.R
-import com.rivaldy.id.core.utils.UtilFunctions.getCurrentRealDate
-import java.text.ParseException
-import java.text.SimpleDateFormat
+import com.rivaldy.id.core.utils.UtilConstants.DATE_FORMAT_VIEW
+import org.joda.time.DateTimeZone
+import org.joda.time.format.DateTimeFormat
+import org.joda.time.format.ISODateTimeFormat
 import java.util.*
 
 /** Created by github.com/im-o on 10/1/2022. */
@@ -37,16 +38,12 @@ object UtilExtensions {
         startActivity(intent)
     }
 
-    fun String.toViewFromServerDate(currentPattern: String): String {
-        val formatIn = SimpleDateFormat(currentPattern, Locale.getDefault())
-        val formatOut = SimpleDateFormat(UtilConstants.DATE_FORMAT_VIEW, Locale.getDefault())
-        formatIn.timeZone = TimeZone.getTimeZone("GMT")
-        val calendar = Calendar.getInstance()
-        try {
-            calendar.time = formatIn.parse(this) ?: getCurrentRealDate()
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
-        return formatOut.format(calendar.time)
+    fun String.toViewFromServerDate(): String {
+        val dateString = this
+        val dateTime = ISODateTimeFormat.dateTime().withZoneUTC().parseDateTime(dateString).toDateTime(DateTimeZone.getDefault())
+        val format = DateTimeFormat.forPattern(DATE_FORMAT_VIEW)
+        return dateTime.toString(format)
     }
+
+    private val localeID = Locale("in", "ID")
 }

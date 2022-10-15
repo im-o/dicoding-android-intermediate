@@ -7,24 +7,27 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rivaldy.id.core.data.model.remote.story.Story
-import com.rivaldy.id.core.utils.UtilConstants
 import com.rivaldy.id.core.utils.UtilExtensions.toViewFromServerDate
 import com.rivaldy.id.dicoding.databinding.RowItemStoryBinding
 
 /** Created by github.com/im-o on 10/14/2022. */
 
-class HomeAdapter : ListAdapter<Story, HomeAdapter.ViewHolder>(DIFF_CALLBACK) {
+class HomeAdapter(
+    private val listener: (Story) -> Unit
+) : ListAdapter<Story, HomeAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     inner class ViewHolder(private val binding: RowItemStoryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindItem(item: Story) {
             binding.apply {
                 nameTV.text = item.name
                 descriptionTV.text = item.description
-                dateCreatedTV.text = item.createdAt?.toViewFromServerDate(UtilConstants.DATE_FORMAT_SERVER)
+                dateCreatedTV.text = item.createdAt?.toViewFromServerDate()
                 Glide.with(root.context)
                     .load(item.photoUrl)
                     .error(com.rivaldy.id.commons.R.color.colorPrimary)
                     .into(photoIV)
+
+                constraintLayout.setOnClickListener { listener(item) }
             }
         }
     }

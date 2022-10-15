@@ -45,6 +45,14 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    packagingOptions {
+        resources {
+            excludes += "META-INF/LICENSE.txt"
+            excludes += "META-INF/NOTICE.txt"
+        }
+    }
+
     namespace = "com.rivaldy.id.core"
 }
 
@@ -79,4 +87,5 @@ dependencies {
     // GLIDE
     api(MyDependencies.glide)
     annotationProcessor(MyDependencies.glide_compiler)
+    implementation(MyDependencies.joda_time)
 }

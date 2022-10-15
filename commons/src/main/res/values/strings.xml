@@ -8,4 +8,5 @@
     <string name="message_not_valid_password">Password must be at least 6 characters</string>
     <string name="form_cant_empty">This form cannot be empty</string>
     <string name="_cant_empty">%s cannot be empty</string>
+    <string name="add_story">Add Story</string>
 </resources>

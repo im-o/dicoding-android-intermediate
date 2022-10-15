@@ -9,9 +9,10 @@
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@drawable/bg_ripple_grey_square">
 
         <TextView
             android:id="@+id/nameTV"
@@ -43,9 +44,10 @@
         <ImageView
             android:id="@+id/photoIV"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/space_200"
             android:adjustViewBounds="true"
             android:contentDescription="@string/image_story"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider1"
