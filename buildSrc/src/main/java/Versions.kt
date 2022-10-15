@@ -26,4 +26,5 @@ object Versions {
     const val facebook_shimmer_version = "0.5.0"
     const val glide_version = "4.14.2"
     const val joda_version = "2.12.0"
+    const val swipe_refresh_version = "1.1.0"
 }

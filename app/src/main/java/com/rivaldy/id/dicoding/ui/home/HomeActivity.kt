@@ -8,10 +8,11 @@ import com.rivaldy.id.core.data.model.remote.story.Story
 import com.rivaldy.id.core.data.model.remote.story.UserStoryResponse
 import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
-import com.rivaldy.id.core.utils.UtilExtensions.myToast
+import com.rivaldy.id.core.utils.UtilExtensions.openActivity
 import com.rivaldy.id.core.utils.UtilExtensions.showSnackBar
 import com.rivaldy.id.dicoding.R
 import com.rivaldy.id.dicoding.databinding.ActivityHomeBinding
+import com.rivaldy.id.dicoding.ui.home.detail_story.DetailStoryActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,11 +27,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         initObservers()
         viewModel.getStoriesApiCall()
         binding.shimmerLayout.root.startShimmer()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        showShimmerLoading(true)
     }
 
     override fun onPause() {
@@ -81,6 +77,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     }
 
     private fun storyClicked(item: Story) {
-        myToast(item.toString())
+        openActivity(DetailStoryActivity::class.java) {
+            putParcelable(DetailStoryActivity.EXTRA_STORY, item)
+        }
     }
 }

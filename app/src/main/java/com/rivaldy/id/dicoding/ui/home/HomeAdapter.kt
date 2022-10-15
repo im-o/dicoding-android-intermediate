@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.rivaldy.id.commons.view.LoadingProgressDialog.getCircularProgressDrawable
 import com.rivaldy.id.core.data.model.remote.story.Story
 import com.rivaldy.id.core.utils.UtilExtensions.toViewFromServerDate
 import com.rivaldy.id.dicoding.databinding.RowItemStoryBinding
@@ -25,6 +26,7 @@ class HomeAdapter(
                 Glide.with(root.context)
                     .load(item.photoUrl)
                     .error(com.rivaldy.id.commons.R.color.colorPrimary)
+                    .placeholder(getCircularProgressDrawable(root.context))
                     .into(photoIV)
 
                 constraintLayout.setOnClickListener { listener(item) }
