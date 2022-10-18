@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.add_story.AddStoryActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
+        app:elevation="@dimen/space_1">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:minHeight="?attr/actionBarSize"
+            app:contentInsetStartWithNavigation="0dp"
+            app:title="@string/add_story" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/hintAddImageTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/add_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/placeholderAddImage"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_200"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_line_dash_grey"
+                android:contentDescription="@string/add_image"
+                android:padding="@dimen/space_60"
+                android:src="@drawable/ic_add_photo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hintAddImageTV" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/imagePreviewCV"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="6dp"
+                android:backgroundTint="@android:color/transparent"
+                android:visibility="gone"
+                app:cardCornerRadius="@dimen/space_6"
+                app:cardElevation="@dimen/space_0"
+                app:layout_constraintBottom_toBottomOf="@+id/placeholderAddImage"
+                app:layout_constraintEnd_toEndOf="@+id/placeholderAddImage"
+                app:layout_constraintStart_toStartOf="@+id/placeholderAddImage"
+                app:layout_constraintTop_toTopOf="@+id/placeholderAddImage">
+
+                <ImageView
+                    android:id="@+id/imagePreviewIV"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/add_image"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/dicoding_icon" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/hintDescriptionTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/placeholderAddImage" />
+
+            <com.rivaldy.id.commons.widget.input.RequiredInputEditText
+                android:id="@+id/descriptionET"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:background="@drawable/bg_input_layout"
+                android:gravity="top"
+                android:hint="@string/description"
+                android:maxLines="5"
+                android:minLines="5"
+                android:paddingHorizontal="@dimen/space_16"
+                android:paddingTop="@dimen/space_16"
+                app:layout_constraintEnd_toEndOf="@+id/placeholderAddImage"
+                app:layout_constraintStart_toStartOf="@+id/placeholderAddImage"
+                app:layout_constraintTop_toBottomOf="@+id/hintDescriptionTV" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/uploadStoryMB"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_55"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="24dp"
+        android:enabled="false"
+        android:insetTop="@dimen/space_0"
+        android:insetBottom="@dimen/space_0"
+        android:text="@string/upload_story"
+        android:textAllCaps="false"
+        app:cornerRadius="@dimen/space_0"
+        app:layout_constraintEnd_toEndOf="@+id/nameET"
+        app:layout_constraintStart_toStartOf="@+id/nameET"
+        app:layout_constraintTop_toBottomOf="@+id/passwordET" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -27,4 +27,5 @@ object Versions {
     const val glide_version = "4.14.2"
     const val joda_version = "2.12.0"
     const val swipe_refresh_version = "1.1.0"
+    const val camerax_version = "1.1.0-beta01"
 }

@@ -1,6 +1,9 @@
 package com.rivaldy.id.dicoding.ui.home
 
+import android.content.Intent
 import android.view.Menu
+import android.view.MenuItem
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.rivaldy.id.commons.base.BaseActivity
@@ -10,14 +13,20 @@ import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
 import com.rivaldy.id.core.utils.UtilExtensions.openActivity
 import com.rivaldy.id.core.utils.UtilExtensions.showSnackBar
+import com.rivaldy.id.core.utils.UtilFunctions
+import com.rivaldy.id.core.utils.UtilFunctions.openAlertDialog
 import com.rivaldy.id.dicoding.R
 import com.rivaldy.id.dicoding.databinding.ActivityHomeBinding
+import com.rivaldy.id.dicoding.ui.MainViewModel
+import com.rivaldy.id.dicoding.ui.auth.login.LoginActivity
+import com.rivaldy.id.dicoding.ui.home.add_story.AddStoryActivity
 import com.rivaldy.id.dicoding.ui.home.detail_story.DetailStoryActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     private val viewModel: HomeViewModel by viewModels()
+    private val mainViewModel: MainViewModel by viewModels()
     private val homeAdapter by lazy { HomeAdapter { storyClicked(it) } }
 
     override fun getViewBinding() = ActivityHomeBinding.inflate(layoutInflater)
@@ -37,6 +46,20 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.addStoryItem -> openAddStory()
+            R.id.languageSettingItem -> openActivity(AddStoryActivity::class.java)
+            R.id.logoutItem -> logoutClicked()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun openAddStory() {
+        val intent = Intent(this, AddStoryActivity::class.java)
+        startActivityForResult.launch(intent)
     }
 
     private fun initView() {
@@ -79,6 +102,33 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     private fun storyClicked(item: Story) {
         openActivity(DetailStoryActivity::class.java) {
             putParcelable(DetailStoryActivity.EXTRA_STORY, item)
+        }
+    }
+
+    private fun logoutClicked() {
+        val title = getString(R.string.title_logout)
+        val message = getString(R.string.message_logout)
+        openAlertDialog(this, title, message, object : UtilFunctions.DialogButtonClickListener {
+            override fun onPositiveButtonClick() {
+                mainViewModel.clearLoginInfo()
+                val intent = Intent(this@HomeActivity, LoginActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            }
+
+            override fun onNegativeButtonClick() {
+                // do nothing
+            }
+        })
+    }
+
+    private var startActivityForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        if (it.resultCode == RESULT_OK) {
+            if (it.data != null) {
+                val isSuccessAddStory = it.data?.getBooleanExtra(AddStoryActivity.EXTRA_IS_SUCCESS_ADD_STORY, false) ?: false
+                if (isSuccessAddStory) viewModel.getStoriesApiCall()
+            }
         }
     }
 }

@@ -94,7 +94,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
 
     private fun validationForm() {
         binding.apply {
-            registerMB.isEnabled = nameET.toString().trim().isNotEmpty() && isValidEmail(emailET.text.toString().trim()) && passwordET.text.toString().length >= 6
+            registerMB.isEnabled = nameET.text.toString().trim().isNotEmpty() && isValidEmail(emailET.text.toString().trim()) && passwordET.text.toString().length >= 6
         }
     }
 }
