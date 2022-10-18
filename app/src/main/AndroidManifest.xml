@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DicodingIntermediate">
         <activity
+            android:name=".ui.home.detail_story.DetailStoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.home.HomeActivity"
             android:exported="false" />
         <activity

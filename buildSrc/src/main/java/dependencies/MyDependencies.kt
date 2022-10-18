@@ -33,5 +33,9 @@ object MyDependencies {
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide_version}"
     const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide_version}"
 
+    // Joda Time
     const val joda_time = "net.danlew:android.joda:${Versions.joda_version}"
+
+    // Swipe Refresh Layout
+    const val swipe_refresh_layout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipe_refresh_version}"
 }

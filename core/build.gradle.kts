@@ -88,4 +88,5 @@ dependencies {
     api(MyDependencies.glide)
     annotationProcessor(MyDependencies.glide_compiler)
     implementation(MyDependencies.joda_time)
+    api(MyDependencies.swipe_refresh_layout)
 }
