@@ -19,4 +19,17 @@
     <string name="no_story_showed">No story showed!</string>
     <string name="see_location">See Location</string>
     <string name="setting">Setting</string>
+    <string name="add_image">Add Image</string>
+    <string name="description">Description</string>
+    <string name="upload_story">Upload Story</string>
+    <string name="log_out">Log out</string>
+    <string name="language_setting">Language setting</string>
+    <string name="message_logout">Are you sure want to logout?</string>
+    <string name="title_logout">Logout</string>
+    <string name="take_picture">Take Picture</string>
+    <string name="take_picture_from_gallery">Take Picture From Gallery</string>
+    <string name="switch_camera">Switch Camera</string>
+    <string name="failed_showing_camera">Failed to showing camera</string>
+    <string name="permissions_not_granted">Permissions not granted by the user.</string>
+    <string name="failed_take_picture">Failed to take picture</string>
 </resources>
