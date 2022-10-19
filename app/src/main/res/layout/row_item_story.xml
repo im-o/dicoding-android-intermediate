@@ -25,6 +25,7 @@
             android:gravity="center_vertical"
             android:includeFontPadding="false"
             android:textColor="@color/black"
+            android:transitionName="@string/name"
             app:drawableStartCompat="@drawable/ic_baseline_account_circle_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,6 +49,7 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/image_story"
             android:scaleType="centerCrop"
+            android:transitionName="@string/image_story"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider1"
@@ -62,7 +64,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/photoIV" />
 
-
         <TextView
             android:id="@+id/descriptionTV"
             android:layout_width="match_parent"
@@ -74,6 +75,7 @@
             android:includeFontPadding="false"
             android:maxLines="5"
             android:textColor="@color/colorText"
+            android:transitionName="@string/description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/photoIV"
@@ -90,6 +92,7 @@
             android:includeFontPadding="false"
             android:textColor="@color/colorTextLow"
             android:textSize="@dimen/size_12"
+            android:transitionName="@string/date"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

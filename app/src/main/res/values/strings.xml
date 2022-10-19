@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Dicoding Igram</string>
+    <string name="name">Name</string>
+    <string name="add_story">Add Story</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="create_account">Create a new account</string>
@@ -21,6 +23,7 @@
     <string name="setting">Setting</string>
     <string name="add_image">Add Image</string>
     <string name="description">Description</string>
+    <string name="date">Date</string>
     <string name="upload_story">Upload Story</string>
     <string name="log_out">Log out</string>
     <string name="language_setting">Language setting</string>
