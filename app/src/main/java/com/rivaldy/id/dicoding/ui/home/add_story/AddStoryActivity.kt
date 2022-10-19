@@ -12,6 +12,7 @@ import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
 import com.rivaldy.id.core.utils.UtilExtensions.myToast
 import com.rivaldy.id.core.utils.UtilExtensions.showSnackBar
+import com.rivaldy.id.core.utils.UtilFunctions.isProbablyRunningOnEmulator
 import com.rivaldy.id.core.utils.UtilFunctions.rotateBitmap
 import com.rivaldy.id.dicoding.databinding.ActivityAddStoryBinding
 import com.rivaldy.id.dicoding.util.CameraActivity
@@ -23,6 +24,7 @@ class AddStoryActivity : BaseActivity<ActivityAddStoryBinding>() {
     private val viewModel by viewModels<AddStoryViewModel>()
     private var photoFile: File? = null
     private var isBackCamera: Boolean = true
+    private var isRotateImage: Boolean = false
 
     override fun getViewBinding() = ActivityAddStoryBinding.inflate(layoutInflater)
 
@@ -30,14 +32,9 @@ class AddStoryActivity : BaseActivity<ActivityAddStoryBinding>() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        initView()
         initObservers()
         initClick()
         initListeners()
-    }
-
-    private fun initView() {
-
     }
 
     private fun initObservers() {
@@ -76,7 +73,7 @@ class AddStoryActivity : BaseActivity<ActivityAddStoryBinding>() {
             }
             uploadStoryMB.setOnClickListener {
                 val description = binding.descriptionET.text.toString()
-                viewModel.addStoryApiCall(description, photoFile ?: return@setOnClickListener, isBackCamera)
+                viewModel.addStoryApiCall(description, photoFile ?: return@setOnClickListener, isBackCamera, isRotateImage)
             }
         }
     }
@@ -93,9 +90,17 @@ class AddStoryActivity : BaseActivity<ActivityAddStoryBinding>() {
 
     private val launcherIntentCameraX = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (it.resultCode == CameraActivity.CAMERA_X_RESULT) {
+            isRotateImage = true
             photoFile = it.data?.getSerializableExtra(CameraActivity.EXTRA_PICTURE) as File
             isBackCamera = it.data?.getBooleanExtra(CameraActivity.EXTRA_IS_BACK_CAMERA, true) as Boolean
-            val result = rotateBitmap(BitmapFactory.decodeFile(photoFile?.path), isBackCamera)
+            val result = if (isProbablyRunningOnEmulator) rotateBitmap(BitmapFactory.decodeFile(photoFile?.path), isBackCamera) else BitmapFactory.decodeFile(photoFile?.path)
+            binding.imagePreviewIV.setImageBitmap(result)
+            binding.imagePreviewCV.isVisible = true
+            validationForm()
+        } else if (it.resultCode == CameraActivity.GALLERY_CODE_RESULT) {
+            isRotateImage = false
+            photoFile = it.data?.getSerializableExtra(CameraActivity.EXTRA_GALLERY) as File
+            val result = BitmapFactory.decodeFile(photoFile?.path)
             binding.imagePreviewIV.setImageBitmap(result)
             binding.imagePreviewCV.isVisible = true
             validationForm()

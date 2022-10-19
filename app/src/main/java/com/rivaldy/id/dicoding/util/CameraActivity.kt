@@ -2,8 +2,13 @@ package com.rivaldy.id.dicoding.util
 
 import android.Manifest
 import android.app.Application
+import android.content.ContentResolver
+import android.content.Context
 import android.content.Intent
+import android.content.Intent.ACTION_GET_CONTENT
 import android.content.pm.PackageManager
+import android.net.Uri
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -17,6 +22,9 @@ import com.rivaldy.id.core.utils.UtilFunctions.timestamp
 import com.rivaldy.id.dicoding.R
 import com.rivaldy.id.dicoding.databinding.ActivityCameraBinding
 import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
+import java.io.OutputStream
 
 class CameraActivity : BaseActivity<ActivityCameraBinding>() {
     private var imageCapture: ImageCapture? = null
@@ -31,6 +39,7 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>() {
 
     private fun initClick() {
         binding.takePictureIV.setOnClickListener { takePhoto() }
+        binding.takeFromGalleryIV.setOnClickListener { startGallery() }
         binding.switchCameraIV.setOnClickListener {
             cameraSelector = if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) CameraSelector.DEFAULT_FRONT_CAMERA else CameraSelector.DEFAULT_BACK_CAMERA
             startCamera()
@@ -97,10 +106,46 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>() {
         return File(outputDirectory, "$timestamp.jpg")
     }
 
+    private fun startGallery() {
+        val intent = Intent()
+        intent.action = ACTION_GET_CONTENT
+        intent.type = "image/*"
+        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        launcherIntentGallery.launch(chooser)
+    }
+
+    private fun uriToFile(selectedImg: Uri, context: Context): File {
+        val contentResolver: ContentResolver = context.contentResolver
+        val myFile = createFile(application)
+
+        val inputStream = contentResolver.openInputStream(selectedImg) as InputStream
+        val outputStream: OutputStream = FileOutputStream(myFile)
+        val buf = ByteArray(1024)
+        var len: Int
+        while (inputStream.read(buf).also { len = it } > 0) outputStream.write(buf, 0, len)
+        outputStream.close()
+        inputStream.close()
+
+        return myFile
+    }
+
+    private val launcherIntentGallery = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val selectedImg: Uri = result.data?.data as Uri
+            val myFile = uriToFile(selectedImg, this@CameraActivity)
+            val intent = Intent()
+            intent.putExtra(EXTRA_GALLERY, myFile)
+            setResult(GALLERY_CODE_RESULT, intent)
+            finish()
+        }
+    }
+
     companion object {
         const val EXTRA_PICTURE = "extra_picture"
+        const val EXTRA_GALLERY = "extra_gallery"
         const val EXTRA_IS_BACK_CAMERA = "extra_is_back_camera"
         const val CAMERA_X_RESULT = 200
+        const val GALLERY_CODE_RESULT = 100
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
     }
