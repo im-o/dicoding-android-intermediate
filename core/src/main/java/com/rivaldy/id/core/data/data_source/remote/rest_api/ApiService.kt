@@ -4,10 +4,8 @@ import com.rivaldy.id.core.data.model.remote.DefaultResponse
 import com.rivaldy.id.core.data.model.remote.login.LoginResponse
 import com.rivaldy.id.core.data.model.remote.register.RegisterResponse
 import com.rivaldy.id.core.data.model.remote.story.UserStoryResponse
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.http.*
 
 /** Created by github.com/im-o on 10/1/2022. */
@@ -39,8 +37,8 @@ interface ApiService {
     @POST("/v1/stories")
     suspend fun addStory(
         @Part("description") description: RequestBody,
-        @Part("photo") photo: MultipartBody.Part,
-        @Part("lat") lat: RequestBody? = "0".toRequestBody("text/plain".toMediaType()),
-        @Part("lon") lon: RequestBody? = "0".toRequestBody("text/plain".toMediaType())
+        @Part photo: MultipartBody.Part,
+        @Part("lat") lat: RequestBody?,
+        @Part("lon") lon: RequestBody?
     ): DefaultResponse
 }

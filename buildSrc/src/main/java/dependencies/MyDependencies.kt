@@ -38,4 +38,9 @@ object MyDependencies {
 
     // Swipe Refresh Layout
     const val swipe_refresh_layout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipe_refresh_version}"
+
+    // CameraX
+    const val camerax_camera2 = "androidx.camera:camera-camera2:${Versions.camerax_version}"
+    const val camerax_view = "androidx.camera:camera-view:${Versions.camerax_version}"
+    const val camerax_lifecycle = "androidx.camera:camera-lifecycle:${Versions.camerax_version}"
 }
