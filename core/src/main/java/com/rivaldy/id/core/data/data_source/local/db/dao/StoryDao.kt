@@ -1,6 +1,5 @@
 package com.rivaldy.id.core.data.data_source.local.db.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -14,9 +13,6 @@ interface StoryDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertStories(movie: MutableList<StoryEntity>)
-
-    @Query("SELECT * FROM tbl_story")
-    fun getStories(): LiveData<MutableList<StoryEntity>>
 
     @Query("SELECT * FROM tbl_story")
     fun getStoriesNoLiveData(): MutableList<StoryEntity>

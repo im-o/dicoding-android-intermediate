@@ -5,7 +5,6 @@ import androidx.core.widget.doAfterTextChanged
 import com.rivaldy.id.commons.base.BaseActivity
 import com.rivaldy.id.commons.util.FormatterUtils.isValidEmail
 import com.rivaldy.id.commons.util.FormatterUtils.spannedHintFooterAuth
-import com.rivaldy.id.core.data.model.local.pref.LoginInfo
 import com.rivaldy.id.core.data.model.remote.login.LoginResult
 import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
@@ -71,7 +70,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     private fun showLoginSuccess(loginResult: LoginResult?) {
         showLoading(false)
-        mainViewModel.setLoginInfo(LoginInfo(loginResult?.userId, loginResult?.token, binding.emailET.text.toString(), loginResult?.name))
+        mainViewModel.setUserTokenPref(loginResult?.token ?: "")
         openActivity(HomeActivity::class.java)
         finish()
     }
