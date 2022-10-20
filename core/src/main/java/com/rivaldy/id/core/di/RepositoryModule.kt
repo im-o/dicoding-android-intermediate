@@ -1,6 +1,8 @@
 package com.rivaldy.id.core.di
 
 import android.content.SharedPreferences
+import com.rivaldy.id.core.data.data_source.local.db.AppDatabase
+import com.rivaldy.id.core.data.data_source.local.db.DbRepositoryImpl
 import com.rivaldy.id.core.data.data_source.local.pref.PreferenceRepositoryImpl
 import com.rivaldy.id.core.data.data_source.remote.rest_api.ApiService
 import com.rivaldy.id.core.data.data_source.remote.rest_api.RestApiRepositoryImpl
@@ -20,4 +22,7 @@ object RepositoryModule {
 
     @Provides
     fun providesRestApiRepository(apiService: ApiService) = RestApiRepositoryImpl(apiService)
+
+    @Provides
+    fun providesDbRepository(appDatabase: AppDatabase) = DbRepositoryImpl(appDatabase)
 }
