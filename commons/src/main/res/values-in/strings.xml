@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="email">Email</string>
+    <string name="password">Kata sandi</string>
+    <string name="input_text">Masukkan teks</string>
+    <string name="message_not_valid_email">Ini bukan format email yang valid</string>
+    <string name="message_not_valid_password">Kata sandi harus minimal 6 karakter</string>
+    <string name="form_cant_empty">Form ini tidak boleh kosong</string>
+    <string name="_cant_empty">%s tidak boleh kosong</string>
+</resources>

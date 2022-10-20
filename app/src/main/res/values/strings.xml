@@ -15,11 +15,9 @@
     <string name="already_have_account">Already have an account?</string>
     <string name="dummy_password">rival123</string>
     <string name="dummy_email">rivaldy@gmail.com</string>
-    <string name="name_cannot_empty">Name cannot be empty</string>
     <string name="dummy_name">Hello, Im Guest.</string>
     <string name="image_story">Image story</string>
     <string name="no_story_showed">No story showed!</string>
-    <string name="see_location">See Location</string>
     <string name="setting">Setting</string>
     <string name="add_image">Add Image</string>
     <string name="description">Description</string>
@@ -28,7 +26,6 @@
     <string name="log_out">Log out</string>
     <string name="language_setting">Language setting</string>
     <string name="message_logout">Are you sure want to logout?</string>
-    <string name="title_logout">Logout</string>
     <string name="take_picture">Take Picture</string>
     <string name="take_picture_from_gallery">Take Picture From Gallery</string>
     <string name="switch_camera">Switch Camera</string>
