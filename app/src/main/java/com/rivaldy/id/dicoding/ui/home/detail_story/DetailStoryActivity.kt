@@ -17,6 +17,7 @@ class DetailStoryActivity : BaseActivity<ActivityDetailStoryBinding>() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
 
         extraStory = intent.getParcelableExtra(EXTRA_STORY) ?: return
         if (extraStory != null) {
