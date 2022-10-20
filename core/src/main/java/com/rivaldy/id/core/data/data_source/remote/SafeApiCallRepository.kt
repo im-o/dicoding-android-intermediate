@@ -16,7 +16,7 @@ abstract class SafeApiCallRepository {
             try {
                 DataResource.Success(apiCall.invoke())
             } catch (throwable: Throwable) {
-                logE("ERROR API TEST : $throwable")
+                logE(throwable.message.toString())
                 when (throwable) {
                     is HttpException -> {
                         DataResource.Failure(false, throwable.code(), throwable.response()?.errorBody(), throwable.message)

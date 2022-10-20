@@ -11,7 +11,6 @@ import com.rivaldy.id.core.utils.UtilConstants.DATE_FORMAT_VIEW
 import org.joda.time.DateTimeZone
 import org.joda.time.format.DateTimeFormat
 import org.joda.time.format.ISODateTimeFormat
-import java.util.*
 
 /** Created by github.com/im-o on 10/1/2022. */
 
@@ -44,6 +43,4 @@ object UtilExtensions {
         val format = DateTimeFormat.forPattern(DATE_FORMAT_VIEW)
         return dateTime.toString(format)
     }
-
-    private val localeID = Locale("in", "ID")
 }

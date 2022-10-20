@@ -4,11 +4,7 @@
     <string name="add_story">Tambah Cerita</string>
     <string name="login">Masuk</string>
     <string name="register">Daftar</string>
-    <string name="create_account">Buat akun baru</string>
-    <string name="have_account">Sudah punya akun</string>
-    <string name="hello_welcome_back">Hello,\nWelcome Back</string>
     <string name="login_thumbnail">Gambar mini masuk</string>
-    <string name="or">Atau</string>
     <string name="sign_in">Masuk.</string>
     <string name="sign_up">Daftar.</string>
     <string name="no_have_account">Belum punya akun?</string>
@@ -18,7 +14,6 @@
     <string name="dummy_name">Hello, Im Guest.</string>
     <string name="image_story">Gambar Cerita</string>
     <string name="no_story_showed">Belum ada cerita ditampilkan!</string>
-    <string name="setting">Pengaturan</string>
     <string name="add_image">Tambah Gambar</string>
     <string name="description">Deskripsi</string>
     <string name="date">Tanggal</string>
@@ -32,4 +27,5 @@
     <string name="failed_showing_camera">Gagal menampilkan kamera</string>
     <string name="permissions_not_granted">Izin tidak diberikan oleh pengguna.</string>
     <string name="failed_take_picture">Gagal mengambil gambar</string>
+    <string name="choose_picture">Pilih Gambar</string>
 </resources>

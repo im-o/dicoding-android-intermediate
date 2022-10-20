@@ -4,11 +4,7 @@
     <string name="add_story">Add Story</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
-    <string name="create_account">Create a new account</string>
-    <string name="have_account">Have an account</string>
-    <string name="hello_welcome_back">Hello,\nWelcome Back</string>
     <string name="login_thumbnail">Login Thumbnail</string>
-    <string name="or">Or</string>
     <string name="sign_in">Sign in.</string>
     <string name="sign_up">Sign up.</string>
     <string name="no_have_account">Don\'t have an account?</string>
@@ -18,7 +14,6 @@
     <string name="dummy_name">Hello, Im Guest.</string>
     <string name="image_story">Image story</string>
     <string name="no_story_showed">No story showed!</string>
-    <string name="setting">Setting</string>
     <string name="add_image">Add Image</string>
     <string name="description">Description</string>
     <string name="date">Date</string>
@@ -32,4 +27,5 @@
     <string name="failed_showing_camera">Failed to showing camera</string>
     <string name="permissions_not_granted">Permissions not granted by the user.</string>
     <string name="failed_take_picture">Failed to take picture</string>
+    <string name="choose_picture">Choose a Picture</string>
 </resources>
