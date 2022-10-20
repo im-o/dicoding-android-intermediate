@@ -8,8 +8,10 @@ import com.rivaldy.id.commons.util.FormatterUtils
 import com.rivaldy.id.commons.util.FormatterUtils.isValidEmail
 import com.rivaldy.id.core.data.model.local.pref.LoginInfo
 import com.rivaldy.id.core.data.model.remote.login.LoginResult
+import com.rivaldy.id.core.data.model.remote.register.RegisterResponse
 import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
+import com.rivaldy.id.core.utils.UtilExtensions.myToast
 import com.rivaldy.id.core.utils.UtilExtensions.showSnackBar
 import com.rivaldy.id.dicoding.R
 import com.rivaldy.id.dicoding.databinding.ActivityRegisterBinding
@@ -49,7 +51,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
         viewModel.registerUser.observe(this) {
             when (it) {
                 is DataResource.Loading -> showLoading(true)
-                is DataResource.Success -> showRegisterSuccess()
+                is DataResource.Success -> showRegisterSuccess(it.value)
                 is DataResource.Failure -> showFailure(it)
             }
         }
@@ -87,8 +89,9 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
         startActivity(intent)
     }
 
-    private fun showRegisterSuccess() {
+    private fun showRegisterSuccess(response: RegisterResponse) {
         showLoading(false)
+        myToast(response.message.toString())
         viewModel.loginUserApiCall(binding.emailET.text.toString(), binding.passwordET.text.toString())
     }
 

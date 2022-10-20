@@ -9,9 +9,6 @@
     <string name="sign_up">Daftar.</string>
     <string name="no_have_account">Belum punya akun?</string>
     <string name="already_have_account">Sudah punya akun?</string>
-    <string name="dummy_password">rival123</string>
-    <string name="dummy_email">rivaldy@gmail.com</string>
-    <string name="dummy_name">Hello, Im Guest.</string>
     <string name="image_story">Gambar Cerita</string>
     <string name="no_story_showed">Belum ada cerita ditampilkan!</string>
     <string name="add_image">Tambah Gambar</string>
