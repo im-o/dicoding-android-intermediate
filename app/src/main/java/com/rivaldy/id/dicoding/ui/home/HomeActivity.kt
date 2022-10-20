@@ -7,8 +7,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.rivaldy.id.commons.base.BaseActivity
+import com.rivaldy.id.core.data.model.local.db.StoryEntity
 import com.rivaldy.id.core.data.model.remote.story.UserStoryResponse
 import com.rivaldy.id.core.data.network.DataResource
+import com.rivaldy.id.core.utils.UtilCoroutines.io
 import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
 import com.rivaldy.id.core.utils.UtilExtensions.openActivity
 import com.rivaldy.id.core.utils.UtilExtensions.showSnackBar
@@ -32,6 +34,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     override fun initData() {
         initView()
         initObservers()
+        io { viewModel.clearStoriesDb() }
         viewModel.getStoriesApiCall()
         binding.shimmerLayout.root.startShimmer()
     }
@@ -85,6 +88,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         showShimmerLoading(false)
         homeAdapter.submitList(response.listStory)
         binding.noDataTV.isVisible = response.listStory?.isEmpty() == true
+        io {
+            viewModel.insertStoriesDb(response.listStory?.map {
+                StoryEntity(it.id ?: "", it.name ?: "", it.createdAt ?: "", it.description ?: "", it.photoUrl ?: "")
+            } as MutableList<StoryEntity>)
+        }
     }
 
     private fun showShimmerLoading(isLoading: Boolean) {

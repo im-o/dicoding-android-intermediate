@@ -2,49 +2,80 @@ package com.rivaldy.id.dicoding.ui.stack_widget
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.os.Binder
+import android.os.Bundle
 import android.widget.RemoteViews
-import android.widget.RemoteViewsService
-import androidx.core.os.bundleOf
+import android.widget.RemoteViewsService.RemoteViewsFactory
+import com.bumptech.glide.Glide
+import com.rivaldy.id.core.data.data_source.local.db.dao.StoryDao
+import com.rivaldy.id.core.data.model.local.db.StoryEntity
+import com.rivaldy.id.core.di.DatabaseModule.stackWidgetAppDatabase
 import com.rivaldy.id.dicoding.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import java.util.concurrent.ExecutionException
+
 
 /** Created by github.com/im-o on 10/19/2022. */
 
-class StackRemoteViewsFactory(private val mContext: Context) : RemoteViewsService.RemoteViewsFactory {
+class StackRemoteViewsFactory internal constructor(
+    private val mContext: Context
+) : RemoteViewsFactory {
 
-    private val mWidgetItems = ArrayList<Bitmap>()
+    private var moviesList: MutableList<StoryEntity?> = mutableListOf()
+    private lateinit var dao: StoryDao
 
-    override fun onCreate() {}
+    override fun onCreate() {
+        dao = stackWidgetAppDatabase(mContext).storyDao()
+    }
 
     override fun onDataSetChanged() {
-        mWidgetItems.add(BitmapFactory.decodeResource(mContext.resources, R.drawable.star_wars_logo))
-        mWidgetItems.add(BitmapFactory.decodeResource(mContext.resources, R.drawable.starwars))
-        mWidgetItems.add(BitmapFactory.decodeResource(mContext.resources, R.drawable.star_wars_logo))
-        mWidgetItems.add(BitmapFactory.decodeResource(mContext.resources, R.drawable.starwars))
-        mWidgetItems.add(BitmapFactory.decodeResource(mContext.resources, R.drawable.star_wars_logo))
-        mWidgetItems.add(BitmapFactory.decodeResource(mContext.resources, R.drawable.starwars))
+        val identifyToken: Long = Binder.clearCallingIdentity()
+        runBlocking(Dispatchers.IO) {
+            try {
+                moviesList = dao.getStoriesNoLiveData().toMutableList()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+        Binder.restoreCallingIdentity(identifyToken)
     }
 
     override fun onDestroy() {}
 
-    override fun getCount(): Int = mWidgetItems.size
+    override fun getCount(): Int = moviesList.size
 
     override fun getViewAt(position: Int): RemoteViews {
-        val rv = RemoteViews(mContext.packageName, R.layout.row_item_widget)
-        rv.setImageViewBitmap(R.id.imageStoryIV, mWidgetItems[position])
-        val extras = bundleOf(ImageStoryWidgetProvider.EXTRA_ITEM to position)
+        val remoteViews = RemoteViews(mContext.packageName, R.layout.row_item_widget)
+        if (!moviesList.isNullOrEmpty()) {
+            val urlImg = moviesList[position]?.photoUrl
+            if (urlImg != null) {
+                try {
+                    val bitmap = Glide.with(mContext).asBitmap().load(urlImg).submit().get()
+                    remoteViews.setImageViewBitmap(R.id.imageStoryIV, bitmap)
+                } catch (e: ExecutionException) {
+                    e.printStackTrace()
+                } catch (e: InterruptedException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+        val extras = Bundle()
+        extras.putString(ImageStoryWidgetProvider.EXTRA_NAME, moviesList[position]?.name)
+        extras.putString(ImageStoryWidgetProvider.EXTRA_DESCRIPTION, moviesList[position]?.description)
+        extras.putString(ImageStoryWidgetProvider.EXTRA_CREATED, moviesList[position]?.createdAt)
+        extras.putString(ImageStoryWidgetProvider.EXTRA_PHOTO_URL, moviesList[position]?.photoUrl)
         val fillInIntent = Intent()
         fillInIntent.putExtras(extras)
-        rv.setOnClickFillInIntent(R.id.imageStoryIV, fillInIntent)
-        return rv
+        remoteViews.setOnClickFillInIntent(R.id.imageStoryIV, fillInIntent)
+        return remoteViews
     }
 
     override fun getLoadingView(): RemoteViews? = null
 
     override fun getViewTypeCount(): Int = 1
 
-    override fun getItemId(p0: Int): Long = 0
+    override fun getItemId(position: Int): Long = 0
 
     override fun hasStableIds(): Boolean = false
 }
