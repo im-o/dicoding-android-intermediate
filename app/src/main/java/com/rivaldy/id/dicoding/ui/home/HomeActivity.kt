@@ -6,9 +6,12 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.core.view.isVisible
 import com.rivaldy.id.commons.base.BaseActivity
 import com.rivaldy.id.core.data.model.local.db.StoryEntity
+import com.rivaldy.id.core.data.model.remote.story.Story
 import com.rivaldy.id.core.data.model.remote.story.UserStoryResponse
 import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.core.utils.UtilCoroutines.io
@@ -18,16 +21,18 @@ import com.rivaldy.id.core.utils.UtilFunctions
 import com.rivaldy.id.core.utils.UtilFunctions.openAlertDialog
 import com.rivaldy.id.dicoding.R
 import com.rivaldy.id.dicoding.databinding.ActivityHomeBinding
+import com.rivaldy.id.dicoding.databinding.RowItemStoryBinding
 import com.rivaldy.id.dicoding.ui.MainViewModel
 import com.rivaldy.id.dicoding.ui.auth.login.LoginActivity
 import com.rivaldy.id.dicoding.ui.home.add_story.AddStoryActivity
+import com.rivaldy.id.dicoding.ui.home.detail_story.DetailStoryActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     private val viewModel: HomeViewModel by viewModels()
     private val mainViewModel: MainViewModel by viewModels()
-    private val homeAdapter by lazy { HomeAdapter() }
+    private val homeAdapter by lazy { HomeAdapter { item, adapterBinding -> animationStoryClicked(item, adapterBinding) } }
 
     override fun getViewBinding() = ActivityHomeBinding.inflate(layoutInflater)
 
@@ -102,6 +107,21 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         } else {
             binding.shimmerLayout.root.stopShimmer()
             binding.shimmerLayout.root.hideShimmer()
+        }
+    }
+
+    private fun animationStoryClicked(item: Story, adapterBinding: RowItemStoryBinding) {
+        adapterBinding.apply {
+            val optionsCompat: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this@HomeActivity,
+                Pair(nameTV, getString(R.string.name)),
+                Pair(descriptionTV, getString(R.string.description)),
+                Pair(dateCreatedTV, getString(R.string.date)),
+                Pair(photoIV, getString(R.string.image_story)),
+            )
+            val intent = Intent(this@HomeActivity, DetailStoryActivity::class.java)
+            intent.putExtra(DetailStoryActivity.EXTRA_STORY, item)
+            startActivity(intent, optionsCompat.toBundle())
         }
     }
 
