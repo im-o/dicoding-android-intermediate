@@ -8,9 +8,9 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.snackbar.Snackbar
 import com.rivaldy.id.core.R
 import com.rivaldy.id.core.utils.UtilConstants.DATE_FORMAT_VIEW
-import org.joda.time.DateTimeZone
-import org.joda.time.format.DateTimeFormat
-import org.joda.time.format.ISODateTimeFormat
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 /** Created by github.com/im-o on 10/1/2022. */
 
@@ -37,10 +37,9 @@ object UtilExtensions {
         startActivity(intent)
     }
 
-    fun String.toViewFromServerDate(): String {
-        val dateString = this
-        val dateTime = ISODateTimeFormat.dateTime().withZoneUTC().parseDateTime(dateString).toDateTime(DateTimeZone.getDefault())
-        val format = DateTimeFormat.forPattern(DATE_FORMAT_VIEW)
-        return dateTime.toString(format)
+    fun String.formatDateToViewFromISO(): String {
+        val instant = Instant.parse(this)
+        val formatter = DateTimeFormatter.ofPattern(DATE_FORMAT_VIEW).withZone(ZoneId.of(ZoneId.systemDefault().id))
+        return formatter.format(instant)
     }
 }

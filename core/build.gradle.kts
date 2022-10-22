@@ -33,6 +33,7 @@ android {
     }
 
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
@@ -92,11 +93,13 @@ dependencies {
     // GLIDE
     api(MyDependencies.glide)
     annotationProcessor(MyDependencies.glide_compiler)
-    implementation(MyDependencies.joda_time)
     api(MyDependencies.swipe_refresh_layout)
 
     // CAMERA X
     api(MyDependencies.camerax_camera2)
     api(MyDependencies.camerax_lifecycle)
     api(MyDependencies.camerax_view)
+
+    // DESUGAR
+    coreLibraryDesugaring(MyDependencies.desugar)
 }

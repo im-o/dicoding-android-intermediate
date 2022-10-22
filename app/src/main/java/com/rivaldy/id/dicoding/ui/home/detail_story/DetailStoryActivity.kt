@@ -5,7 +5,7 @@ import com.rivaldy.id.commons.R
 import com.rivaldy.id.commons.base.BaseActivity
 import com.rivaldy.id.commons.view.LoadingProgressDialog
 import com.rivaldy.id.core.data.model.remote.story.Story
-import com.rivaldy.id.core.utils.UtilExtensions.toViewFromServerDate
+import com.rivaldy.id.core.utils.UtilExtensions.formatDateToViewFromISO
 import com.rivaldy.id.dicoding.databinding.ActivityDetailStoryBinding
 
 class DetailStoryActivity : BaseActivity<ActivityDetailStoryBinding>() {
@@ -24,7 +24,7 @@ class DetailStoryActivity : BaseActivity<ActivityDetailStoryBinding>() {
             binding.apply {
                 nameTV.text = extraStory?.name
                 descriptionTV.text = extraStory?.description
-                dateCreatedTV.text = extraStory?.createdAt?.toViewFromServerDate()
+                dateCreatedTV.text = extraStory?.createdAt?.formatDateToViewFromISO()
                 Glide.with(root.context)
                     .load(extraStory?.photoUrl)
                     .error(R.color.colorPrimary)

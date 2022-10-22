@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rivaldy.id.commons.view.LoadingProgressDialog.getCircularProgressDrawable
 import com.rivaldy.id.core.data.model.remote.story.Story
-import com.rivaldy.id.core.utils.UtilExtensions.toViewFromServerDate
+import com.rivaldy.id.core.utils.UtilExtensions.formatDateToViewFromISO
 import com.rivaldy.id.dicoding.databinding.RowItemStoryBinding
 
 /** Created by github.com/im-o on 10/14/2022. */
@@ -22,7 +22,7 @@ class HomeAdapter(
             binding.apply {
                 nameTV.text = item.name
                 descriptionTV.text = item.description
-                dateCreatedTV.text = item.createdAt?.toViewFromServerDate()
+                dateCreatedTV.text = item.createdAt?.formatDateToViewFromISO()
                 Glide.with(root.context)
                     .load(item.photoUrl)
                     .error(com.rivaldy.id.commons.R.color.colorPrimary)

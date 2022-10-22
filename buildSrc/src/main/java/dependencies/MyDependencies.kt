@@ -38,11 +38,11 @@ object MyDependencies {
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide_version}"
     const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide_version}"
 
-    // Joda Time
-    const val joda_time = "net.danlew:android.joda:${Versions.joda_version}"
-
     // Swipe Refresh Layout
     const val swipe_refresh_layout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipe_refresh_version}"
+
+    // Desugar
+    const val desugar = "com.android.tools:desugar_jdk_libs:${Versions.desugar_version}"
 
     // CameraX
     const val camerax_camera2 = "androidx.camera:camera-camera2:${Versions.camerax_version}"
