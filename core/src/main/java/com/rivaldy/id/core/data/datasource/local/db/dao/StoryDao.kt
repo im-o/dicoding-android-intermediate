@@ -1,4 +1,4 @@
-package com.rivaldy.id.core.data.data_source.local.db.dao
+package com.rivaldy.id.core.data.datasource.local.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

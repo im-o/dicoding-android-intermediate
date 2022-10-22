@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rivaldy.id.core.data.data_source.local.db.DbRepositoryImpl
-import com.rivaldy.id.core.data.data_source.remote.rest_api.RestApiRepositoryImpl
+import com.rivaldy.id.core.data.datasource.local.db.DbRepositoryImpl
+import com.rivaldy.id.core.data.datasource.remote.rest.RestApiRepositoryImpl
 import com.rivaldy.id.core.data.model.local.db.StoryEntity
 import com.rivaldy.id.core.data.model.remote.story.UserStoryResponse
 import com.rivaldy.id.core.data.network.DataResource

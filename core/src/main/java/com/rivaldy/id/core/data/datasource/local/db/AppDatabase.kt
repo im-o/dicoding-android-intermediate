@@ -1,8 +1,8 @@
-package com.rivaldy.id.core.data.data_source.local.db
+package com.rivaldy.id.core.data.datasource.local.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.rivaldy.id.core.data.data_source.local.db.dao.StoryDao
+import com.rivaldy.id.core.data.datasource.local.db.dao.StoryDao
 import com.rivaldy.id.core.data.model.local.db.StoryEntity
 
 /** Created by github.com/im-o on 10/20/2022. */

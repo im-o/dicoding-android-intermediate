@@ -1,6 +1,6 @@
-package com.rivaldy.id.core.data.data_source.remote.rest_api
+package com.rivaldy.id.core.data.datasource.remote.rest
 
-import com.rivaldy.id.core.data.data_source.remote.SafeApiCallRepository
+import com.rivaldy.id.core.data.datasource.remote.SafeApiCallRepository
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import javax.inject.Inject

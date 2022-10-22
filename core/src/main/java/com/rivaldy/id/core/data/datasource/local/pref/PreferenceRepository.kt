@@ -1,4 +1,4 @@
-package com.rivaldy.id.core.data.data_source.local.pref
+package com.rivaldy.id.core.data.datasource.local.pref
 
 /** Created by github.com/im-o on 10/1/2022. */
 

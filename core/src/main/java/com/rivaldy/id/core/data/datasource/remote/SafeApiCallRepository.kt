@@ -1,4 +1,4 @@
-package com.rivaldy.id.core.data.data_source.remote
+package com.rivaldy.id.core.data.datasource.remote
 
 import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.core.utils.UtilConstants.NO_INTERNET

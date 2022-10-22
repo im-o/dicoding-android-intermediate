@@ -1,4 +1,4 @@
-package com.rivaldy.id.core.data.data_source.local.pref
+package com.rivaldy.id.core.data.datasource.local.pref
 
 import android.content.SharedPreferences
 import com.rivaldy.id.core.utils.UtilConstantPreferences.PREF_KEY_USER_TOKEN

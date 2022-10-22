@@ -1,4 +1,4 @@
-package com.rivaldy.id.dicoding.ui.stack_widget
+package com.rivaldy.id.dicoding.ui.stackwidget
 
 import android.content.Context
 import android.content.Intent
@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService.RemoteViewsFactory
 import com.bumptech.glide.Glide
-import com.rivaldy.id.core.data.data_source.local.db.dao.StoryDao
+import com.rivaldy.id.core.data.datasource.local.db.dao.StoryDao
 import com.rivaldy.id.core.data.model.local.db.StoryEntity
 import com.rivaldy.id.core.di.DatabaseModule.stackWidgetAppDatabase
 import com.rivaldy.id.dicoding.R

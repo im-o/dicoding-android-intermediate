@@ -44,7 +44,7 @@
         </activity>
 
         <receiver
-            android:name="com.rivaldy.id.dicoding.ui.stack_widget.ImageStoryWidgetProvider"
+            android:name="com.rivaldy.id.dicoding.ui.stackwidget.ImageStoryWidgetProvider"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -55,7 +55,7 @@
                 android:resource="@xml/image_story_widget_info" />
         </receiver>
         <service
-            android:name="com.rivaldy.id.dicoding.ui.stack_widget.StackWidgetService"
+            android:name="com.rivaldy.id.dicoding.ui.stackwidget.StackWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 

@@ -1,4 +1,4 @@
-package com.rivaldy.id.core.data.data_source.local.db
+package com.rivaldy.id.core.data.datasource.local.db
 
 import com.rivaldy.id.core.data.model.local.db.StoryEntity
 import javax.inject.Inject

@@ -1,7 +1,7 @@
 package com.rivaldy.id.dicoding.ui
 
 import androidx.lifecycle.ViewModel
-import com.rivaldy.id.core.data.data_source.local.pref.PreferenceRepositoryImpl
+import com.rivaldy.id.core.data.datasource.local.pref.PreferenceRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.rivaldy.id.dicoding.ui.stack_widget
+package com.rivaldy.id.dicoding.ui.stackwidget
 
 import android.content.Intent
 import android.widget.RemoteViewsService
