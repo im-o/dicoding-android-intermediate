@@ -16,7 +16,6 @@ import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
 import com.rivaldy.id.core.utils.UtilExtensions.myToast
 import com.rivaldy.id.core.utils.UtilExtensions.showSnackBar
-import com.rivaldy.id.core.utils.UtilFunctions.isProbablyRunningOnEmulator
 import com.rivaldy.id.core.utils.UtilFunctions.rotateBitmap
 import com.rivaldy.id.dicoding.R
 import com.rivaldy.id.dicoding.databinding.ActivityAddStoryBinding
@@ -98,7 +97,7 @@ class AddStoryActivity : BaseActivity<ActivityAddStoryBinding>() {
             isRotateImage = true
             photoFile = it.data?.getSerializableExtra(CameraActivity.EXTRA_PICTURE) as File
             isBackCamera = it.data?.getBooleanExtra(CameraActivity.EXTRA_IS_BACK_CAMERA, true) as Boolean
-            val result = if (isProbablyRunningOnEmulator) rotateBitmap(BitmapFactory.decodeFile(photoFile?.path), isBackCamera) else BitmapFactory.decodeFile(photoFile?.path)
+            val result = rotateBitmap(BitmapFactory.decodeFile(photoFile?.path), isBackCamera)
             binding.imagePreviewIV.setImageBitmap(result)
             binding.imagePreviewCV.isVisible = true
             validationForm()
