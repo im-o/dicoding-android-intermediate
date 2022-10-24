@@ -5,6 +5,7 @@ import androidx.core.widget.doAfterTextChanged
 import com.rivaldy.id.commons.base.BaseActivity
 import com.rivaldy.id.commons.util.FormatterUtils.isValidEmail
 import com.rivaldy.id.commons.util.FormatterUtils.spannedHintFooterAuth
+import com.rivaldy.id.core.data.model.remote.login.LoginRequest
 import com.rivaldy.id.core.data.model.remote.login.LoginResult
 import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
@@ -55,7 +56,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         binding.loginMB.setOnClickListener {
             val email = binding.emailET.text.toString()
             val password = binding.passwordET.text.toString()
-            viewModel.loginUserApiCall(email, password)
+            viewModel.loginUserApiCall(LoginRequest(email, password))
         }
 
         binding.hintFooterTV.setOnClickListener {

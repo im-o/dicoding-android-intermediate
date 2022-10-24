@@ -6,7 +6,9 @@ import androidx.core.widget.doAfterTextChanged
 import com.rivaldy.id.commons.base.BaseActivity
 import com.rivaldy.id.commons.util.FormatterUtils
 import com.rivaldy.id.commons.util.FormatterUtils.isValidEmail
+import com.rivaldy.id.core.data.model.remote.login.LoginRequest
 import com.rivaldy.id.core.data.model.remote.login.LoginResult
+import com.rivaldy.id.core.data.model.remote.register.RegisterRequest
 import com.rivaldy.id.core.data.model.remote.register.RegisterResponse
 import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
@@ -67,7 +69,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
             val name = binding.nameET.text.toString()
             val email = binding.emailET.text.toString()
             val password = binding.passwordET.text.toString()
-            viewModel.registerUserApiCall(name, email, password)
+            viewModel.registerUserApiCall(RegisterRequest(name, email, password))
         }
 
         binding.hintFooterTV.setOnClickListener { finish() }
@@ -91,7 +93,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding>() {
     private fun showRegisterSuccess(response: RegisterResponse) {
         showLoading(false)
         myToast(response.message.toString())
-        viewModel.loginUserApiCall(binding.emailET.text.toString(), binding.passwordET.text.toString())
+        viewModel.loginUserApiCall(LoginRequest(binding.emailET.text.toString(), binding.passwordET.text.toString()))
     }
 
     private fun validationForm() {

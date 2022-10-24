@@ -1,6 +1,8 @@
 package com.rivaldy.id.core.data.datasource.remote.rest
 
 import com.rivaldy.id.core.data.datasource.remote.SafeApiCallRepository
+import com.rivaldy.id.core.data.model.remote.login.LoginRequest
+import com.rivaldy.id.core.data.model.remote.register.RegisterRequest
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import javax.inject.Inject
@@ -11,12 +13,12 @@ class RestApiRepositoryImpl @Inject constructor(
     private val apiService: ApiService
 ) : RestApiRepository, SafeApiCallRepository() {
 
-    override suspend fun registerUserApiCall(name: String, email: String, password: String) = safeApiCall {
-        apiService.registerUser(name, email, password)
+    override suspend fun registerUserApiCall(request: RegisterRequest) = safeApiCall {
+        apiService.registerUser(request.name ?: "", request.email ?: "", request.password ?: "")
     }
 
-    override suspend fun loginUserApiCall(email: String, password: String) = safeApiCall {
-        apiService.loginUser(email, password)
+    override suspend fun loginUserApiCall(request: LoginRequest) = safeApiCall {
+        apiService.loginUser(request.email ?: "", request.password ?: "")
     }
 
     override suspend fun getStoriesApiCall(page: Int?, size: Int?, locationType: Int?) = safeApiCall {
