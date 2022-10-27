@@ -40,6 +40,9 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    testOptions {
+        animationsDisabled = true
+    }
 }
 
 dependencies {
@@ -60,4 +63,12 @@ dependencies {
 
     // Glide
     annotationProcessor(MyDependencies.glide_compiler)
+
+    // MOCKITO
+    testImplementation(MyDependencies.mockito)
+    testImplementation(MyDependencies.mockito_inline)
+
+    //special testing
+    testImplementation(MyDependencies.core_testing) // InstantTaskExecutorRule
+    testImplementation(MyDependencies.coroutines_test) //TestDispatcher
 }

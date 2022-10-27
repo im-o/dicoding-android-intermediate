@@ -48,4 +48,12 @@ object MyDependencies {
     const val camerax_camera2 = "androidx.camera:camera-camera2:${Versions.camerax_version}"
     const val camerax_view = "androidx.camera:camera-view:${Versions.camerax_version}"
     const val camerax_lifecycle = "androidx.camera:camera-lifecycle:${Versions.camerax_version}"
+
+    // Mockito
+    const val mockito = "org.mockito:mockito-core:${Versions.mockito_version}"
+    const val mockito_inline = "org.mockito:mockito-inline:${Versions.mockito_version}"
+
+    // Special Testing
+    const val core_testing = "androidx.arch.core:core-testing:${Versions.core_testing_version}"
+    const val coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines_test_version}"
 }
