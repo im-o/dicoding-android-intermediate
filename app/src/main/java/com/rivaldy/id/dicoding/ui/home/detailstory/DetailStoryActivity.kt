@@ -1,4 +1,4 @@
-package com.rivaldy.id.dicoding.ui.home.detail_story
+package com.rivaldy.id.dicoding.ui.home.detailstory
 
 import com.bumptech.glide.Glide
 import com.rivaldy.id.commons.R

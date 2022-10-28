@@ -1,4 +1,4 @@
-package com.rivaldy.id.dicoding.ui.home.add_story
+package com.rivaldy.id.dicoding.ui.home.addstory
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

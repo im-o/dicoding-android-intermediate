@@ -24,8 +24,8 @@ import com.rivaldy.id.dicoding.databinding.ActivityHomeBinding
 import com.rivaldy.id.dicoding.databinding.RowItemStoryBinding
 import com.rivaldy.id.dicoding.ui.MainViewModel
 import com.rivaldy.id.dicoding.ui.auth.login.LoginActivity
-import com.rivaldy.id.dicoding.ui.home.add_story.AddStoryActivity
-import com.rivaldy.id.dicoding.ui.home.detail_story.DetailStoryActivity
+import com.rivaldy.id.dicoding.ui.home.addstory.AddStoryActivity
+import com.rivaldy.id.dicoding.ui.home.detailstory.DetailStoryActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

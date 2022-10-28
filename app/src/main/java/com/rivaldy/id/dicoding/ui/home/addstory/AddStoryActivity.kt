@@ -1,4 +1,4 @@
-package com.rivaldy.id.dicoding.ui.home.add_story
+package com.rivaldy.id.dicoding.ui.home.addstory
 
 import android.Manifest
 import android.content.Intent

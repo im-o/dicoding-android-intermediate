@@ -20,7 +20,7 @@ import com.rivaldy.id.core.utils.UtilExtensions.myToast
 import com.rivaldy.id.core.utils.UtilFunctions.timestamp
 import com.rivaldy.id.dicoding.R
 import com.rivaldy.id.dicoding.databinding.ActivityCameraBinding
-import com.rivaldy.id.dicoding.ui.home.add_story.AddStoryActivity
+import com.rivaldy.id.dicoding.ui.home.addstory.AddStoryActivity
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
