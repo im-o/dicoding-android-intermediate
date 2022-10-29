@@ -72,4 +72,14 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/mapFAB"
+        style="@style/Widget.Material3.FloatingActionButton.Surface"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/space_16"
+        android:contentDescription="@string/map"
+        android:src="@drawable/ic_baseline_map_24" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

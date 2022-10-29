@@ -16,6 +16,7 @@ import com.rivaldy.id.core.data.model.remote.story.UserStoryResponse
 import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.core.utils.UtilCoroutines.io
 import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
+import com.rivaldy.id.core.utils.UtilExtensions.openActivity
 import com.rivaldy.id.core.utils.UtilExtensions.showSnackBar
 import com.rivaldy.id.core.utils.UtilFunctions
 import com.rivaldy.id.core.utils.UtilFunctions.openAlertDialog
@@ -26,6 +27,7 @@ import com.rivaldy.id.dicoding.ui.MainViewModel
 import com.rivaldy.id.dicoding.ui.auth.login.LoginActivity
 import com.rivaldy.id.dicoding.ui.home.addstory.AddStoryActivity
 import com.rivaldy.id.dicoding.ui.home.detailstory.DetailStoryActivity
+import com.rivaldy.id.dicoding.ui.home.map.MapsActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,6 +40,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
     override fun initData() {
         initView()
+        initClick()
         initObservers()
         io { viewModel.clearStoriesDb() }
         viewModel.getStoriesApiCall()
@@ -63,15 +66,14 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun openAddStory() {
-        val intent = Intent(this, AddStoryActivity::class.java)
-        startActivityForResult.launch(intent)
-    }
-
     private fun initView() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         binding.listDataRV.adapter = homeAdapter
+    }
+
+    private fun initClick() {
+        binding.mapFAB.setOnClickListener { openActivity(MapsActivity::class.java) }
     }
 
     private fun initObservers() {
@@ -139,6 +141,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
             override fun onNegativeButtonClick() {}
         })
+    }
+
+    private fun openAddStory() {
+        val intent = Intent(this, AddStoryActivity::class.java)
+        startActivityForResult.launch(intent)
     }
 
     private var startActivityForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {

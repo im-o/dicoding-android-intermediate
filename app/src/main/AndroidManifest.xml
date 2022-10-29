@@ -5,6 +5,8 @@
     <uses-feature android:name="android.hardware.camera" />
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".App"
@@ -14,6 +16,15 @@
         android:roundIcon="@drawable/dicoding_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.DicodingIntermediate">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
+        <activity
+            android:name=".ui.home.map.MapsActivity"
+            android:exported="false"
+            android:label="@string/map" />
         <activity
             android:name=".util.CameraActivity"
             android:exported="false" />
@@ -44,7 +55,7 @@
         </activity>
 
         <receiver
-            android:name="com.rivaldy.id.dicoding.ui.stackwidget.ImageStoryWidgetProvider"
+            android:name=".ui.stackwidget.ImageStoryWidgetProvider"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -54,8 +65,9 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/image_story_widget_info" />
         </receiver>
+
         <service
-            android:name="com.rivaldy.id.dicoding.ui.stackwidget.StackWidgetService"
+            android:name=".ui.stackwidget.StackWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 

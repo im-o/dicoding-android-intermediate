@@ -5,6 +5,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -48,6 +49,9 @@ android {
 dependencies {
     implementation(project(Modules.commons))
     implementation(project(Modules.core))
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
+    implementation("androidx.appcompat:appcompat:1.5.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     // DEFAULT DEPENDENCIES
     testImplementation(MyDependencies.junit)
@@ -62,7 +66,7 @@ dependencies {
     implementation(MyDependencies.splash_screen)
 
     // Glide
-    annotationProcessor(MyDependencies.glide_compiler)
+    kapt(MyDependencies.glide_compiler)
 
     // MOCKITO
     testImplementation(MyDependencies.mockito)

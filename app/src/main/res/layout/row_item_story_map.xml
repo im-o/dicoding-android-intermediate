@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/space_6"
+    app:cardElevation="@dimen/space_6"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_ripple_grey_square">
+
+        <TextView
+            android:id="@+id/nameTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:drawablePadding="@dimen/space_6"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:textColor="@color/black"
+            android:transitionName="@string/name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/photoIV"
+            app:layout_constraintTop_toTopOf="@+id/photoIV"
+            tools:text="@tools:sample/full_names" />
+
+        <ImageView
+            android:id="@+id/photoIV"
+            android:layout_width="@dimen/space_80"
+            android:layout_height="@dimen/space_80"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/image_story"
+            android:scaleType="centerCrop"
+            android:transitionName="@string/image_story"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:src="@drawable/dicoding_icon" />
+
+        <TextView
+            android:id="@+id/descriptionTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/size_12"
+            android:transitionName="@string/description"
+            app:layout_constraintEnd_toEndOf="@+id/nameTV"
+            app:layout_constraintStart_toStartOf="@+id/nameTV"
+            app:layout_constraintTop_toBottomOf="@+id/nameTV"
+            tools:text="@tools:sample/lorem/random" />
+
+        <TextView
+            android:id="@+id/dateCreatedTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:textColor="@color/colorTextLow"
+            android:textSize="@dimen/size_10"
+            android:transitionName="@string/date"
+            app:layout_constraintBottom_toBottomOf="@+id/photoIV"
+            app:layout_constraintEnd_toEndOf="@+id/descriptionTV"
+            app:layout_constraintStart_toStartOf="@+id/descriptionTV"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionTV"
+            app:layout_constraintVertical_bias="1.0"
+            tools:ignore="TextContrastCheck"
+            tools:text="Wed, 14 Oct 2022" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="0dp"
+    app:behavior_skipCollapsed="true"
+    app:layout_behavior="@string/bottom_sheet_behavior">
+
+    <include
+        android:id="@+id/layout"
+        layout="@layout/row_item_story_map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="110dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/swipeDownCV"
+        android:layout_width="@dimen/space_60"
+        android:layout_height="@dimen/space_4"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="@dimen/space_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/swipeDownCV1"
+        android:layout_width="@dimen/space_40"
+        android:layout_height="@dimen/space_4"
+        android:layout_marginTop="3dp"
+        app:cardCornerRadius="@dimen/space_1"
+        app:layout_constraintEnd_toEndOf="@+id/swipeDownCV"
+        app:layout_constraintStart_toStartOf="@+id/swipeDownCV"
+        app:layout_constraintTop_toBottomOf="@+id/swipeDownCV" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/swipeDownCV2"
+        android:layout_width="@dimen/space_20"
+        android:layout_height="@dimen/space_4"
+        android:layout_marginTop="3dp"
+        app:cardCornerRadius="@dimen/space_1"
+        app:layout_constraintEnd_toEndOf="@+id/swipeDownCV"
+        app:layout_constraintStart_toStartOf="@+id/swipeDownCV"
+        app:layout_constraintTop_toBottomOf="@+id/swipeDownCV1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

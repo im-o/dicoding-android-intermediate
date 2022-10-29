@@ -92,7 +92,7 @@ dependencies {
 
     // GLIDE
     api(MyDependencies.glide)
-    annotationProcessor(MyDependencies.glide_compiler)
+    kapt(MyDependencies.glide_compiler)
     api(MyDependencies.swipe_refresh_layout)
 
     // CAMERA X
