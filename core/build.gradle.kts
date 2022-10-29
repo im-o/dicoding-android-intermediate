@@ -102,4 +102,8 @@ dependencies {
 
     // DESUGAR
     coreLibraryDesugaring(MyDependencies.desugar)
+
+    // PAGING
+    api(MyDependencies.paging_runtime)
+    api(MyDependencies.room_paging)
 }

@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.core.view.isVisible
+import androidx.paging.map
 import com.rivaldy.id.commons.base.BaseActivity
 import com.rivaldy.id.core.data.model.local.db.StoryEntity
 import com.rivaldy.id.core.data.model.remote.story.Story
@@ -19,6 +20,7 @@ import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
 import com.rivaldy.id.core.utils.UtilExtensions.openActivity
 import com.rivaldy.id.core.utils.UtilExtensions.showSnackBar
 import com.rivaldy.id.core.utils.UtilFunctions
+import com.rivaldy.id.core.utils.UtilFunctions.logE
 import com.rivaldy.id.core.utils.UtilFunctions.openAlertDialog
 import com.rivaldy.id.dicoding.R
 import com.rivaldy.id.dicoding.databinding.ActivityHomeBinding
@@ -84,6 +86,12 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
                 is DataResource.Failure -> showFailure(it)
             }
         }
+        viewModel.getStoriesPagingApiCall().observe(this) {
+            homeAdapter.submitData(lifecycle, it)
+            it.map { it1 ->
+                logE("paging data: ${it1.name.toString()}")
+            }
+        }
     }
 
     private fun showFailure(failure: DataResource.Failure) {
@@ -93,7 +101,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
     private fun showStories(response: UserStoryResponse) {
         showShimmerLoading(false)
-        homeAdapter.submitList(response.listStory)
         binding.noDataTV.isVisible = response.listStory?.isEmpty() == true
         io {
             viewModel.insertStoriesDb(response.listStory?.map {

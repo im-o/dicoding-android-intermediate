@@ -2,8 +2,8 @@ package com.rivaldy.id.dicoding.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rivaldy.id.commons.view.LoadingProgressDialog.getCircularProgressDrawable
@@ -15,21 +15,21 @@ import com.rivaldy.id.dicoding.databinding.RowItemStoryBinding
 
 class HomeAdapter(
     private val listener: (Story, RowItemStoryBinding) -> Unit
-) : ListAdapter<Story, HomeAdapter.ViewHolder>(DIFF_CALLBACK) {
+) : PagingDataAdapter<Story, HomeAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     inner class ViewHolder(private val binding: RowItemStoryBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bindItem(item: Story) {
+        fun bindItem(item: Story?) {
             binding.apply {
-                nameTV.text = item.name
-                descriptionTV.text = item.description
-                dateCreatedTV.text = item.createdAt?.formatDateToViewFromISO()
+                nameTV.text = item?.name
+                descriptionTV.text = item?.description
+                dateCreatedTV.text = item?.createdAt?.formatDateToViewFromISO()
                 Glide.with(root.context)
-                    .load(item.photoUrl)
+                    .load(item?.photoUrl)
                     .error(com.rivaldy.id.commons.R.color.colorPrimary)
                     .placeholder(getCircularProgressDrawable(root.context))
                     .into(photoIV)
 
-                constraintLayout.setOnClickListener { listener(item, binding) }
+                constraintLayout.setOnClickListener { listener(item ?: return@setOnClickListener, binding) }
             }
         }
     }

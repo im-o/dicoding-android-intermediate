@@ -2,8 +2,8 @@
 plugins {
     id("com.android.application") version Versions.gradle_plugin apply false
     id("com.android.library") version Versions.gradle_plugin apply false
-    id("org.jetbrains.kotlin.android") version "1.6.21" apply false
-    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version "2.0.1" apply false
+    id("org.jetbrains.kotlin.android") version Versions.kotlin_gradle_plugin apply false
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version Versions.gradle_maps_platform apply false
 }
 
 buildscript {
