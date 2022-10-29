@@ -46,7 +46,11 @@ android {
     buildFeatures {
         viewBinding = true
     }
-
+    kotlinOptions {
+        val commonCompilerArgs = listOf<String>()
+        jvmTarget = JavaVersion.VERSION_11.toString()
+        freeCompilerArgs = commonCompilerArgs + listOf("-Xopt-in=kotlin.RequiresOptIn")
+    }
     packagingOptions {
         resources {
             excludes += "META-INF/LICENSE.txt"

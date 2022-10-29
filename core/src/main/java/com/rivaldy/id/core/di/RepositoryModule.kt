@@ -28,5 +28,5 @@ object RepositoryModule {
     fun providesDbRepository(appDatabase: AppDatabase) = DbRepositoryImpl(appDatabase)
 
     @Provides
-    fun providesStoryPagingRepository(apiService: ApiService) = StoryPagingRepository(apiService)
+    fun providesStoryPagingRepository(appDatabase: AppDatabase, apiService: ApiService) = StoryPagingRepository(appDatabase, apiService)
 }

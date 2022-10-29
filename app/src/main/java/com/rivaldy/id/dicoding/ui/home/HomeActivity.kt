@@ -119,7 +119,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         }
     }
 
-    private fun animationStoryClicked(item: Story, adapterBinding: RowItemStoryBinding) {
+    private fun animationStoryClicked(item: StoryEntity, adapterBinding: RowItemStoryBinding) {
         adapterBinding.apply {
             val optionsCompat: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this@HomeActivity,
@@ -128,8 +128,9 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
                 Pair(dateCreatedTV, getString(R.string.date)),
                 Pair(photoIV, getString(R.string.image_story)),
             )
+            val story = Story(item.createdAt, item.description, item.id, item.name, item.photoUrl)
             val intent = Intent(this@HomeActivity, DetailStoryActivity::class.java)
-            intent.putExtra(DetailStoryActivity.EXTRA_STORY, item)
+            intent.putExtra(DetailStoryActivity.EXTRA_STORY, story)
             startActivity(intent, optionsCompat.toBundle())
         }
     }
