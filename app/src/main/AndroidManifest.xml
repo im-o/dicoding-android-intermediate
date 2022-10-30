@@ -35,7 +35,7 @@
             android:name=".ui.home.detailstory.DetailStoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.HomeActivity"
+            android:name=".ui.home.index.HomeActivity"
             android:exported="false" />
         <activity
             android:name=".ui.auth.register.RegisterActivity"

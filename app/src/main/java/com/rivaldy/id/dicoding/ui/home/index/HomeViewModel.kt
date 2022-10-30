@@ -1,13 +1,11 @@
-package com.rivaldy.id.dicoding.ui.home
+package com.rivaldy.id.dicoding.ui.home.index
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.rivaldy.id.core.data.datasource.local.db.DbRepositoryImpl
 import com.rivaldy.id.core.data.datasource.remote.rest.RestApiRepositoryImpl
-import com.rivaldy.id.core.data.model.local.db.StoryEntity
 import com.rivaldy.id.core.data.model.remote.story.UserStoryResponse
 import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.core.data.paging.repository.StoryPagingRepository
@@ -20,7 +18,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val api: RestApiRepositoryImpl,
-    private val db: DbRepositoryImpl,
     private val storyPagingRepository: StoryPagingRepository
 ) : ViewModel() {
 
@@ -33,12 +30,4 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getStoriesPagingApiCall() = storyPagingRepository.getStoriesPaging().cachedIn(viewModelScope)
-
-    suspend fun insertStoriesDb(movies: MutableList<StoryEntity>) {
-        db.insertStoriesDb(movies)
-    }
-
-    suspend fun clearStoriesDb() {
-        db.clearStoriesDb()
-    }
 }

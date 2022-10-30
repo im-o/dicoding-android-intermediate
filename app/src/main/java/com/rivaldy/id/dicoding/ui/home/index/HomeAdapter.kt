@@ -1,4 +1,4 @@
-package com.rivaldy.id.dicoding.ui.home
+package com.rivaldy.id.dicoding.ui.home.index
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

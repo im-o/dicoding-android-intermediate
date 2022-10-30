@@ -32,8 +32,8 @@ import com.rivaldy.id.core.utils.UtilExtensions.formatDateToViewFromISO
 import com.rivaldy.id.core.utils.UtilExtensions.myToast
 import com.rivaldy.id.dicoding.R
 import com.rivaldy.id.dicoding.databinding.ActivityMapsBinding
-import com.rivaldy.id.dicoding.ui.home.HomeViewModel
 import com.rivaldy.id.dicoding.ui.home.detailstory.DetailStoryActivity
+import com.rivaldy.id.dicoding.ui.home.index.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
