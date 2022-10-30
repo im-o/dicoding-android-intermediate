@@ -33,12 +33,11 @@ import com.rivaldy.id.core.utils.UtilExtensions.myToast
 import com.rivaldy.id.dicoding.R
 import com.rivaldy.id.dicoding.databinding.ActivityMapsBinding
 import com.rivaldy.id.dicoding.ui.home.detailstory.DetailStoryActivity
-import com.rivaldy.id.dicoding.ui.home.index.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MapsActivity : BaseActivity<ActivityMapsBinding>(), OnMapReadyCallback {
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: MapsViewModel by viewModels()
     private lateinit var mMap: GoogleMap
     private val boundsBuilder = LatLngBounds.Builder()
     private lateinit var btmSheetBehavior: BottomSheetBehavior<ConstraintLayout>
