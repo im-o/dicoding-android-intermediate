@@ -9,18 +9,12 @@ import androidx.activity.viewModels
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.core.view.isVisible
-import androidx.paging.map
+import androidx.paging.LoadState
 import com.rivaldy.id.commons.base.BaseActivity
 import com.rivaldy.id.core.data.model.local.db.StoryEntity
 import com.rivaldy.id.core.data.model.remote.story.Story
-import com.rivaldy.id.core.data.model.remote.story.UserStoryResponse
-import com.rivaldy.id.core.data.network.DataResource
-import com.rivaldy.id.core.utils.UtilCoroutines.io
-import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
 import com.rivaldy.id.core.utils.UtilExtensions.openActivity
-import com.rivaldy.id.core.utils.UtilExtensions.showSnackBar
 import com.rivaldy.id.core.utils.UtilFunctions
-import com.rivaldy.id.core.utils.UtilFunctions.logE
 import com.rivaldy.id.core.utils.UtilFunctions.openAlertDialog
 import com.rivaldy.id.dicoding.R
 import com.rivaldy.id.dicoding.databinding.ActivityHomeBinding
@@ -44,8 +38,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         initView()
         initClick()
         initObservers()
-        io { viewModel.clearStoriesDb() }
-        viewModel.getStoriesApiCall()
         binding.shimmerLayout.root.startShimmer()
     }
 
@@ -71,7 +63,9 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     private fun initView() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        binding.listDataRV.adapter = homeAdapter
+        binding.listDataRV.adapter = homeAdapter.withLoadStateFooter(
+            footer = LoadingStateAdapter { homeAdapter.retry() }
+        )
     }
 
     private fun initClick() {
@@ -79,33 +73,12 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     }
 
     private fun initObservers() {
-        viewModel.userStories.observe(this) {
-            when (it) {
-                is DataResource.Loading -> showShimmerLoading(true)
-                is DataResource.Success -> showStories(it.value)
-                is DataResource.Failure -> showFailure(it)
-            }
-        }
         viewModel.getStoriesPagingApiCall().observe(this) {
             homeAdapter.submitData(lifecycle, it)
-            it.map { it1 ->
-                logE("paging data: ${it1.name.toString()}")
-            }
         }
-    }
-
-    private fun showFailure(failure: DataResource.Failure) {
-        showShimmerLoading(false)
-        binding.root.showSnackBar(handleApiError(failure))
-    }
-
-    private fun showStories(response: UserStoryResponse) {
-        showShimmerLoading(false)
-        binding.noDataTV.isVisible = response.listStory?.isEmpty() == true
-        io {
-            viewModel.insertStoriesDb(response.listStory?.map {
-                StoryEntity(it.id ?: "", it.name ?: "", it.createdAt ?: "", it.description ?: "", it.photoUrl ?: "")
-            } as MutableList<StoryEntity>)
+        homeAdapter.addLoadStateListener { loadState ->
+            showShimmerLoading(loadState.refresh is LoadState.Loading && homeAdapter.itemCount <= 0)
+            binding.noDataTV.isVisible = loadState.append.endOfPaginationReached && homeAdapter.itemCount <= 0
         }
     }
 
@@ -160,7 +133,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         if (it.resultCode == RESULT_OK) {
             if (it.data != null) {
                 val isSuccessAddStory = it.data?.getBooleanExtra(AddStoryActivity.EXTRA_IS_SUCCESS_ADD_STORY, false) ?: false
-                if (isSuccessAddStory) viewModel.getStoriesApiCall()
+                if (isSuccessAddStory) initObservers()
             }
         }
     }
