@@ -2,14 +2,13 @@ package com.rivaldy.id.core.data.model.dummy
 
 import com.rivaldy.id.core.data.model.local.db.StoryEntity
 import com.rivaldy.id.core.data.model.remote.story.Story
-import com.rivaldy.id.core.data.model.remote.story.UserStoryResponse
 
 /**
  * Created by github.com/im-o on 10/30/2022.
  */
 
 object DummyData {
-    fun generateDummyUserStoryResponse(): UserStoryResponse {
+    fun generateDummyUserStory(): MutableList<Story> {
         val stories: MutableList<Story> = arrayListOf()
         for (i in 0..100) {
             val story = Story(
@@ -23,7 +22,7 @@ object DummyData {
             )
             stories.add(story)
         }
-        return UserStoryResponse(false, stories, "Stories fetched successfully")
+        return stories
     }
 
     fun generateDummyStoryEntity(): MutableList<StoryEntity> {
