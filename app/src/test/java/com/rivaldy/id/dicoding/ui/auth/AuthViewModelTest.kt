@@ -2,8 +2,7 @@ package com.rivaldy.id.dicoding.ui.auth
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.rivaldy.id.core.data.datasource.remote.rest.RestApiRepositoryImpl
-import com.rivaldy.id.core.data.model.remote.register.RegisterRequest
-import com.rivaldy.id.core.data.model.remote.register.RegisterResponse
+import com.rivaldy.id.core.data.model.dummy.DummyData
 import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.dicoding.util.MainDispatcherRule
 import com.rivaldy.id.dicoding.util.getOrAwaitValue
@@ -43,13 +42,65 @@ class AuthViewModelTest {
 
     @Test
     fun `when user register, then return Success`() = runTest {
-        val registerRequest = RegisterRequest("rivaldy", "rival@gmail.com", "rival123")
-        val expectedResponse = DataResource.Success(RegisterResponse(true, "Email is already taken"))
+        val request = DummyData.dummyRegisterRequest()
+        val expectedResponse = DummyData.dummyRegisterSuccess()
 
-        `when`(repository.registerUserApiCall(registerRequest)).thenReturn(expectedResponse)
-        viewModel.registerUserApiCall(registerRequest)
-        assert(viewModel.registerUser.getOrAwaitValue() is DataResource.Success)
-        Assert.assertEquals(expectedResponse, viewModel.registerUser.getOrAwaitValue())
-        Mockito.verify(repository).registerUserApiCall(registerRequest)
+        `when`(repository.registerUserApiCall(request)).thenReturn(expectedResponse)
+        viewModel.registerUserApiCall(request)
+
+        viewModel.registerUser.getOrAwaitValue().let {
+            Assert.assertNotNull(it)
+            Assert.assertTrue(it is DataResource.Success)
+            Assert.assertEquals(expectedResponse, it)
+        }
+        Mockito.verify(repository).registerUserApiCall(request)
+    }
+
+    @Test
+    fun `when user register, then return Failure`() = runTest {
+        val request = DummyData.dummyRegisterRequest()
+        val expectedResponse = DummyData.dummyRegisterFailure()
+
+        `when`(repository.registerUserApiCall(request)).thenReturn(expectedResponse)
+        viewModel.registerUserApiCall(request)
+
+        viewModel.registerUser.getOrAwaitValue().let {
+            Assert.assertNotNull(it)
+            Assert.assertTrue(it is DataResource.Failure)
+            Assert.assertEquals(expectedResponse, it)
+        }
+        Mockito.verify(repository).registerUserApiCall(request)
+    }
+
+    @Test
+    fun `when user login, then return Success`() = runTest {
+        val request = DummyData.dummyLoginRequest()
+        val expectedResponse = DummyData.dummyLoginSuccess()
+
+        `when`(repository.loginUserApiCall(request)).thenReturn(expectedResponse)
+        viewModel.loginUserApiCall(request)
+
+        viewModel.loginUser.getOrAwaitValue().let {
+            Assert.assertNotNull(it)
+            Assert.assertTrue(it is DataResource.Success)
+            Assert.assertEquals(expectedResponse, it)
+        }
+        Mockito.verify(repository).loginUserApiCall(request)
+    }
+
+    @Test
+    fun `when user login, then return Failure`() = runTest {
+        val request = DummyData.dummyLoginRequest()
+        val expectedResponse = DummyData.dummyLoginFailure()
+
+        `when`(repository.loginUserApiCall(request)).thenReturn(expectedResponse)
+        viewModel.loginUserApiCall(request)
+
+        viewModel.loginUser.getOrAwaitValue().let {
+            Assert.assertNotNull(it)
+            Assert.assertTrue(it is DataResource.Failure)
+            Assert.assertEquals(expectedResponse, it)
+        }
+        Mockito.verify(repository).loginUserApiCall(request)
     }
 }

@@ -1,7 +1,13 @@
 package com.rivaldy.id.core.data.model.dummy
 
 import com.rivaldy.id.core.data.model.local.db.StoryEntity
+import com.rivaldy.id.core.data.model.remote.login.LoginRequest
+import com.rivaldy.id.core.data.model.remote.login.LoginResponse
+import com.rivaldy.id.core.data.model.remote.login.LoginResult
+import com.rivaldy.id.core.data.model.remote.register.RegisterRequest
+import com.rivaldy.id.core.data.model.remote.register.RegisterResponse
 import com.rivaldy.id.core.data.model.remote.story.Story
+import com.rivaldy.id.core.data.network.DataResource
 
 /**
  * Created by github.com/im-o on 10/30/2022.
@@ -39,4 +45,12 @@ object DummyData {
         }
         return stories
     }
+
+    fun dummyRegisterRequest() = RegisterRequest("rivaldy", "rival@gmail.com", "rival123")
+    fun dummyRegisterSuccess() = DataResource.Success(RegisterResponse(true, "User Created"))
+    fun dummyRegisterFailure() = DataResource.Failure(false, 400, null, "Email is already taken")
+
+    fun dummyLoginRequest() = LoginRequest("rival@gmail.com", "rival123")
+    fun dummyLoginSuccess() = DataResource.Success(LoginResponse(false, LoginResult("rival", "some token", "rivalId")))
+    fun dummyLoginFailure() = DataResource.Failure(false, 401, null, "Invalid password")
 }
