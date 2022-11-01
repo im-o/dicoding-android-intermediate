@@ -58,7 +58,8 @@ class StoryRemoteMediatorTest {
 
 class FakeApiService : ApiService {
     override suspend fun getStories(page: Int?, size: Int?, location: Int?): UserStoryResponse {
-        val pagingStories = DummyData.generateDummyUserStory().subList((page?.minus(1))?.times(size ?: 0) ?: 0, ((page?.minus(1))?.times(size ?: 0) ?: 0) + (size ?: 0))
+        val pagingStories = DummyData.generateDummyUserStoryResponse()
+            .listStory?.subList((page?.minus(1))?.times(size ?: 0) ?: 0, ((page?.minus(1))?.times(size ?: 0) ?: 0) + (size ?: 0))
         return UserStoryResponse(false, pagingStories, "Stories fetched successfully")
     }
 
