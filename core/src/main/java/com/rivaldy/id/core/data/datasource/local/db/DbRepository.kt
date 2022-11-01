@@ -7,4 +7,5 @@ import com.rivaldy.id.core.data.model.local.db.StoryEntity
 interface DbRepository {
     suspend fun insertStoriesDb(movies: MutableList<StoryEntity>)
     suspend fun clearStoriesDb()
+    suspend fun getStoriesNoLiveData(): MutableList<StoryEntity>
 }
