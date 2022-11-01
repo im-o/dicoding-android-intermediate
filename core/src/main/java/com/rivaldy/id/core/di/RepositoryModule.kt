@@ -6,6 +6,7 @@ import com.rivaldy.id.core.data.datasource.local.db.DbRepositoryImpl
 import com.rivaldy.id.core.data.datasource.local.pref.PreferenceRepositoryImpl
 import com.rivaldy.id.core.data.datasource.remote.rest.ApiService
 import com.rivaldy.id.core.data.datasource.remote.rest.RestApiRepositoryImpl
+import com.rivaldy.id.core.data.paging.repository.StoryPagingRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,4 +26,7 @@ object RepositoryModule {
 
     @Provides
     fun providesDbRepository(appDatabase: AppDatabase) = DbRepositoryImpl(appDatabase)
+
+    @Provides
+    fun providesStoryPagingRepository(appDatabase: AppDatabase, apiService: ApiService) = StoryPagingRepository(appDatabase, apiService)
 }

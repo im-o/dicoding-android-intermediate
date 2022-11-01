@@ -41,13 +41,17 @@ object MyDependencies {
     // Swipe Refresh Layout
     const val swipe_refresh_layout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipe_refresh_version}"
 
-    // Desugar
-    const val desugar = "com.android.tools:desugar_jdk_libs:${Versions.desugar_version}"
-
     // CameraX
     const val camerax_camera2 = "androidx.camera:camera-camera2:${Versions.camerax_version}"
     const val camerax_view = "androidx.camera:camera-view:${Versions.camerax_version}"
     const val camerax_lifecycle = "androidx.camera:camera-lifecycle:${Versions.camerax_version}"
+
+    // Desugar
+    const val desugar = "com.android.tools:desugar_jdk_libs:${Versions.desugar_version}"
+
+    // Paging 3
+    const val paging_runtime = "androidx.paging:paging-runtime-ktx:${Versions.paging_version}"
+    const val room_paging = "androidx.room:room-paging:${Versions.room_paging_version}"
 
     // Mockito
     const val mockito = "org.mockito:mockito-core:${Versions.mockito_version}"

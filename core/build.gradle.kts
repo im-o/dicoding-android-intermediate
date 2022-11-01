@@ -46,7 +46,11 @@ android {
     buildFeatures {
         viewBinding = true
     }
-
+    kotlinOptions {
+        val commonCompilerArgs = listOf<String>()
+        jvmTarget = JavaVersion.VERSION_11.toString()
+        freeCompilerArgs = commonCompilerArgs + listOf("-Xopt-in=kotlin.RequiresOptIn")
+    }
     packagingOptions {
         resources {
             excludes += "META-INF/LICENSE.txt"
@@ -92,7 +96,7 @@ dependencies {
 
     // GLIDE
     api(MyDependencies.glide)
-    annotationProcessor(MyDependencies.glide_compiler)
+    kapt(MyDependencies.glide_compiler)
     api(MyDependencies.swipe_refresh_layout)
 
     // CAMERA X
@@ -102,4 +106,8 @@ dependencies {
 
     // DESUGAR
     coreLibraryDesugaring(MyDependencies.desugar)
+
+    // PAGING
+    api(MyDependencies.paging_runtime)
+    api(MyDependencies.room_paging)
 }

@@ -1,35 +1,35 @@
-package com.rivaldy.id.dicoding.ui.home
+package com.rivaldy.id.dicoding.ui.home.index
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.rivaldy.id.commons.view.LoadingProgressDialog.getCircularProgressDrawable
-import com.rivaldy.id.core.data.model.remote.story.Story
+import com.rivaldy.id.core.data.model.local.db.StoryEntity
 import com.rivaldy.id.core.utils.UtilExtensions.formatDateToViewFromISO
 import com.rivaldy.id.dicoding.databinding.RowItemStoryBinding
 
 /** Created by github.com/im-o on 10/14/2022. */
 
 class HomeAdapter(
-    private val listener: (Story, RowItemStoryBinding) -> Unit
-) : ListAdapter<Story, HomeAdapter.ViewHolder>(DIFF_CALLBACK) {
+    private val listener: (StoryEntity, RowItemStoryBinding) -> Unit
+) : PagingDataAdapter<StoryEntity, HomeAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     inner class ViewHolder(private val binding: RowItemStoryBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bindItem(item: Story) {
+        fun bindItem(item: StoryEntity?) {
             binding.apply {
-                nameTV.text = item.name
-                descriptionTV.text = item.description
-                dateCreatedTV.text = item.createdAt?.formatDateToViewFromISO()
+                nameTV.text = item?.name
+                descriptionTV.text = item?.description
+                dateCreatedTV.text = item?.createdAt?.formatDateToViewFromISO()
                 Glide.with(root.context)
-                    .load(item.photoUrl)
+                    .load(item?.photoUrl)
                     .error(com.rivaldy.id.commons.R.color.colorPrimary)
                     .placeholder(getCircularProgressDrawable(root.context))
                     .into(photoIV)
 
-                constraintLayout.setOnClickListener { listener(item, binding) }
+                constraintLayout.setOnClickListener { listener(item ?: return@setOnClickListener, binding) }
             }
         }
     }
@@ -44,12 +44,12 @@ class HomeAdapter(
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Story>() {
-            override fun areItemsTheSame(oldItem: Story, newItem: Story): Boolean {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<StoryEntity>() {
+            override fun areItemsTheSame(oldItem: StoryEntity, newItem: StoryEntity): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: Story, newItem: Story): Boolean {
+            override fun areContentsTheSame(oldItem: StoryEntity, newItem: StoryEntity): Boolean {
                 return oldItem == newItem
             }
         }

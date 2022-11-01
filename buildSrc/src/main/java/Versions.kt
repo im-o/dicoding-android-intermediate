@@ -9,6 +9,7 @@ object Versions {
 
     const val gradle_plugin = "7.1.1"
     const val kotlin_gradle_plugin = "1.6.21"
+    const val gradle_maps_platform = "2.0.1"
 
     const val core_ktx_version = "1.6.0"
     const val app_compat_version = "1.5.1"
@@ -27,8 +28,10 @@ object Versions {
     const val facebook_shimmer_version = "0.5.0"
     const val glide_version = "4.14.2"
     const val swipe_refresh_version = "1.1.0"
-    const val desugar_version = "1.1.5"
     const val camerax_version = "1.1.0-beta01"
+    const val desugar_version = "1.1.5"
+    const val paging_version = "3.1.1"
+    const val room_paging_version = "2.4.0-rc01"
     const val mockito_version = "4.0.0"
     const val core_testing_version = "2.1.0"
     const val coroutines_test_version = "1.6.4"

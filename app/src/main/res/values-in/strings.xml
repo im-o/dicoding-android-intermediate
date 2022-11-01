@@ -25,4 +25,5 @@
     <string name="permissions_not_granted">Izin tidak diberikan oleh pengguna.</string>
     <string name="failed_take_picture">Gagal mengambil gambar</string>
     <string name="choose_picture">Pilih Gambar</string>
+    <string name="map">Peta</string>
 </resources>

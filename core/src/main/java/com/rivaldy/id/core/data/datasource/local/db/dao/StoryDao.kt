@@ -1,5 +1,6 @@
 package com.rivaldy.id.core.data.datasource.local.db.dao
 
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -16,6 +17,9 @@ interface StoryDao {
 
     @Query("SELECT * FROM tbl_story")
     fun getStoriesNoLiveData(): MutableList<StoryEntity>
+
+    @Query("SELECT * FROM tbl_story")
+    fun getStoriesPaging(): PagingSource<Int, StoryEntity>
 
     @Query("DELETE FROM tbl_story")
     suspend fun clearStories()

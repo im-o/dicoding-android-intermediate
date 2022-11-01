@@ -1,4 +1,4 @@
-package com.rivaldy.id.dicoding.ui.home
+package com.rivaldy.id.dicoding.ui.home.index
 
 import android.content.Intent
 import android.provider.Settings
@@ -9,14 +9,11 @@ import androidx.activity.viewModels
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.util.Pair
 import androidx.core.view.isVisible
+import androidx.paging.LoadState
 import com.rivaldy.id.commons.base.BaseActivity
 import com.rivaldy.id.core.data.model.local.db.StoryEntity
 import com.rivaldy.id.core.data.model.remote.story.Story
-import com.rivaldy.id.core.data.model.remote.story.UserStoryResponse
-import com.rivaldy.id.core.data.network.DataResource
-import com.rivaldy.id.core.utils.UtilCoroutines.io
-import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
-import com.rivaldy.id.core.utils.UtilExtensions.showSnackBar
+import com.rivaldy.id.core.utils.UtilExtensions.openActivity
 import com.rivaldy.id.core.utils.UtilFunctions
 import com.rivaldy.id.core.utils.UtilFunctions.openAlertDialog
 import com.rivaldy.id.dicoding.R
@@ -26,6 +23,7 @@ import com.rivaldy.id.dicoding.ui.MainViewModel
 import com.rivaldy.id.dicoding.ui.auth.login.LoginActivity
 import com.rivaldy.id.dicoding.ui.home.addstory.AddStoryActivity
 import com.rivaldy.id.dicoding.ui.home.detailstory.DetailStoryActivity
+import com.rivaldy.id.dicoding.ui.home.map.MapsActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,9 +36,8 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
 
     override fun initData() {
         initView()
+        initClick()
         initObservers()
-        io { viewModel.clearStoriesDb() }
-        viewModel.getStoriesApiCall()
         binding.shimmerLayout.root.startShimmer()
     }
 
@@ -63,40 +60,25 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun openAddStory() {
-        val intent = Intent(this, AddStoryActivity::class.java)
-        startActivityForResult.launch(intent)
-    }
-
     private fun initView() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        binding.listDataRV.adapter = homeAdapter
+        binding.listDataRV.adapter = homeAdapter.withLoadStateFooter(
+            footer = LoadingStateAdapter { homeAdapter.retry() }
+        )
+    }
+
+    private fun initClick() {
+        binding.mapFAB.setOnClickListener { openActivity(MapsActivity::class.java) }
     }
 
     private fun initObservers() {
-        viewModel.userStories.observe(this) {
-            when (it) {
-                is DataResource.Loading -> showShimmerLoading(true)
-                is DataResource.Success -> showStories(it.value)
-                is DataResource.Failure -> showFailure(it)
-            }
+        viewModel.getStoriesPagingApiCall().observe(this) {
+            homeAdapter.submitData(lifecycle, it)
         }
-    }
-
-    private fun showFailure(failure: DataResource.Failure) {
-        showShimmerLoading(false)
-        binding.root.showSnackBar(handleApiError(failure))
-    }
-
-    private fun showStories(response: UserStoryResponse) {
-        showShimmerLoading(false)
-        homeAdapter.submitList(response.listStory)
-        binding.noDataTV.isVisible = response.listStory?.isEmpty() == true
-        io {
-            viewModel.insertStoriesDb(response.listStory?.map {
-                StoryEntity(it.id ?: "", it.name ?: "", it.createdAt ?: "", it.description ?: "", it.photoUrl ?: "")
-            } as MutableList<StoryEntity>)
+        homeAdapter.addLoadStateListener { loadState ->
+            showShimmerLoading(loadState.refresh is LoadState.Loading && homeAdapter.itemCount <= 0)
+            binding.noDataTV.isVisible = loadState.append.endOfPaginationReached && homeAdapter.itemCount <= 0
         }
     }
 
@@ -110,7 +92,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         }
     }
 
-    private fun animationStoryClicked(item: Story, adapterBinding: RowItemStoryBinding) {
+    private fun animationStoryClicked(item: StoryEntity, adapterBinding: RowItemStoryBinding) {
         adapterBinding.apply {
             val optionsCompat: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this@HomeActivity,
@@ -119,8 +101,9 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
                 Pair(dateCreatedTV, getString(R.string.date)),
                 Pair(photoIV, getString(R.string.image_story)),
             )
+            val story = Story(item.createdAt, item.description, item.id, item.name, item.photoUrl)
             val intent = Intent(this@HomeActivity, DetailStoryActivity::class.java)
-            intent.putExtra(DetailStoryActivity.EXTRA_STORY, item)
+            intent.putExtra(DetailStoryActivity.EXTRA_STORY, story)
             startActivity(intent, optionsCompat.toBundle())
         }
     }
@@ -141,11 +124,16 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         })
     }
 
+    private fun openAddStory() {
+        val intent = Intent(this, AddStoryActivity::class.java)
+        startActivityForResult.launch(intent)
+    }
+
     private var startActivityForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (it.resultCode == RESULT_OK) {
             if (it.data != null) {
                 val isSuccessAddStory = it.data?.getBooleanExtra(AddStoryActivity.EXTRA_IS_SUCCESS_ADD_STORY, false) ?: false
-                if (isSuccessAddStory) viewModel.getStoriesApiCall()
+                if (isSuccessAddStory) initObservers()
             }
         }
     }

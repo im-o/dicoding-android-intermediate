@@ -1,14 +1,14 @@
-package com.rivaldy.id.dicoding.ui.home
+package com.rivaldy.id.dicoding.ui.home.index
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rivaldy.id.core.data.datasource.local.db.DbRepositoryImpl
+import androidx.paging.cachedIn
 import com.rivaldy.id.core.data.datasource.remote.rest.RestApiRepositoryImpl
-import com.rivaldy.id.core.data.model.local.db.StoryEntity
 import com.rivaldy.id.core.data.model.remote.story.UserStoryResponse
 import com.rivaldy.id.core.data.network.DataResource
+import com.rivaldy.id.core.data.paging.repository.StoryPagingRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val api: RestApiRepositoryImpl,
-    private val db: DbRepositoryImpl
+    private val storyPagingRepository: StoryPagingRepository
 ) : ViewModel() {
 
     private val _userStories: MutableLiveData<DataResource<UserStoryResponse>> = MutableLiveData()
@@ -29,11 +29,5 @@ class HomeViewModel @Inject constructor(
         _userStories.value = api.getStoriesApiCall(page, size, locationType)
     }
 
-    suspend fun insertStoriesDb(movies: MutableList<StoryEntity>) {
-        db.insertStoriesDb(movies)
-    }
-
-    suspend fun clearStoriesDb() {
-        db.clearStoriesDb()
-    }
+    fun getStoriesPagingApiCall() = storyPagingRepository.getStoriesPaging().cachedIn(viewModelScope)
 }

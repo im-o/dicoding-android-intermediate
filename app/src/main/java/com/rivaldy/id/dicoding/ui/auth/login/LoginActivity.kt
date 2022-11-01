@@ -16,7 +16,7 @@ import com.rivaldy.id.dicoding.databinding.ActivityLoginBinding
 import com.rivaldy.id.dicoding.ui.MainViewModel
 import com.rivaldy.id.dicoding.ui.auth.AuthViewModel
 import com.rivaldy.id.dicoding.ui.auth.register.RegisterActivity
-import com.rivaldy.id.dicoding.ui.home.HomeActivity
+import com.rivaldy.id.dicoding.ui.home.index.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
