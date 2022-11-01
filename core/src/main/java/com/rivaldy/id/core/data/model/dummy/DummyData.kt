@@ -68,4 +68,5 @@ object DummyData {
     val dummyDescriptionBody = "description".toRequestBody("text/plain".toMediaType())
     val dummyImageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData("photo", "name", File("").asRequestBody("image/jpeg".toMediaTypeOrNull()))
     fun dummyAddStorySuccess() = DataResource.Success(DefaultResponse(false, "success"))
+    fun dummyAddStoryFailure() = DataResource.Failure(false, 401, null, "\"description\" is required")
 }
