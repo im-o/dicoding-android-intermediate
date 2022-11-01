@@ -16,11 +16,17 @@ import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
 import com.rivaldy.id.core.utils.UtilExtensions.myToast
 import com.rivaldy.id.core.utils.UtilExtensions.showSnackBar
+import com.rivaldy.id.core.utils.UtilFunctions
 import com.rivaldy.id.core.utils.UtilFunctions.rotateBitmap
 import com.rivaldy.id.dicoding.R
 import com.rivaldy.id.dicoding.databinding.ActivityAddStoryBinding
 import com.rivaldy.id.dicoding.util.CameraActivity
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
 @AndroidEntryPoint
@@ -76,8 +82,10 @@ class AddStoryActivity : BaseActivity<ActivityAddStoryBinding>() {
                 launcherIntentCameraX.launch(intent)
             }
             uploadStoryMB.setOnClickListener {
-                val description = binding.descriptionET.text.toString()
-                viewModel.addStoryApiCall(description, photoFile ?: return@setOnClickListener, isBackCamera, isRotateImage)
+                val descriptionRequestBody = binding.descriptionET.text.toString().toRequestBody("text/plain".toMediaType())
+                val imageRequestBody = UtilFunctions.rotateAndReduceFileImage(photoFile ?: return@setOnClickListener, isRotateImage, isBackCamera).asRequestBody("image/jpeg".toMediaTypeOrNull())
+                val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData("photo", photoFile?.name, imageRequestBody)
+                viewModel.addStoryApiCall(descriptionRequestBody, imageMultipart, null, null)
             }
         }
     }

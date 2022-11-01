@@ -7,15 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.rivaldy.id.core.data.datasource.remote.rest.RestApiRepositoryImpl
 import com.rivaldy.id.core.data.model.remote.DefaultResponse
 import com.rivaldy.id.core.data.network.DataResource
-import com.rivaldy.id.core.utils.UtilFunctions.rotateAndReduceFileImage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
-import java.io.File
+import okhttp3.RequestBody
 import javax.inject.Inject
 
 /** Created by github.com/im-o on 10/4/2022. */
@@ -28,12 +23,8 @@ class AddStoryViewModel @Inject constructor(
     private val _addStory: MutableLiveData<DataResource<DefaultResponse>> = MutableLiveData()
     val addStory: LiveData<DataResource<DefaultResponse>> = _addStory
 
-    fun addStoryApiCall(description: String, photoFile: File, isBackCamera: Boolean, isRotateImage: Boolean) = viewModelScope.launch {
-        val descriptionRequestBody = description.toRequestBody("text/plain".toMediaType())
-        val imageRequestBody = rotateAndReduceFileImage(photoFile, isRotateImage, isBackCamera).asRequestBody("image/jpeg".toMediaTypeOrNull())
-        val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData("photo", photoFile.name, imageRequestBody)
-
+    fun addStoryApiCall(descriptionBody: RequestBody, imageMultipartBody: MultipartBody.Part, lat: RequestBody?, lon: RequestBody?) = viewModelScope.launch {
         _addStory.value = DataResource.Loading
-        _addStory.value = api.addStoryApiCall(descriptionRequestBody, imageMultipart, null, null)
+        _addStory.value = api.addStoryApiCall(descriptionBody, imageMultipartBody, lat, lon)
     }
 }
