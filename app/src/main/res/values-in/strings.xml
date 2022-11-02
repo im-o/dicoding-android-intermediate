@@ -26,4 +26,6 @@
     <string name="failed_take_picture">Gagal mengambil gambar</string>
     <string name="choose_picture">Pilih Gambar</string>
     <string name="map">Peta</string>
+    <string name="latitude">Garis Lintang</string>
+    <string name="longitude">Garis Bujur</string>
 </resources>

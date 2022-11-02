@@ -85,18 +85,30 @@ class AddStoryActivity : BaseActivity<ActivityAddStoryBinding>() {
                 val descriptionRequestBody = binding.descriptionET.text.toString().toRequestBody("text/plain".toMediaType())
                 val imageRequestBody = UtilFunctions.rotateAndReduceFileImage(photoFile ?: return@setOnClickListener, isRotateImage, isBackCamera).asRequestBody("image/jpeg".toMediaTypeOrNull())
                 val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData("photo", photoFile?.name, imageRequestBody)
-                viewModel.addStoryApiCall(descriptionRequestBody, imageMultipart, null, null)
+                val lat = binding.latitudeET.text.toString()
+                val lng = binding.longitudeET.text.toString()
+                val latRequestBody = if (lat.isEmpty()) null else lat.toRequestBody("text/plain".toMediaType())
+                val lngRequestBody = if (lng.isEmpty()) null else lng.toRequestBody("text/plain".toMediaType())
+                viewModel.addStoryApiCall(descriptionRequestBody, imageMultipart, latRequestBody, lngRequestBody)
             }
         }
     }
 
     private fun initListeners() {
         binding.descriptionET.doAfterTextChanged { validationForm() }
+        binding.latitudeET.doAfterTextChanged { validationForm() }
+        binding.longitudeET.doAfterTextChanged { validationForm() }
     }
 
     private fun validationForm() {
         binding.apply {
+            val isFirstValid = descriptionET.text.toString().trim().isNotEmpty() && photoFile != null
             uploadStoryMB.isEnabled = descriptionET.text.toString().trim().isNotEmpty() && photoFile != null
+            if (isFirstValid) {
+                val isSecondValid = latitudeET.text.toString().trim().isNotEmpty() && longitudeET.text.toString().trim().isNotEmpty()
+                val isThirdValid = latitudeET.text.toString().trim().isEmpty() && longitudeET.text.toString().trim().isEmpty()
+                uploadStoryMB.isEnabled = isSecondValid || isThirdValid
+            }
         }
     }
 
