@@ -1,0 +1,121 @@
+# Unit Testing
+
+AuthViewModel
+
+a. Ketika User Berhasil Register
+    - Memastikan reponse data tidak null.
+    - Memastikan mengembalikan DataResource.Success.
+    - Memastikan response data sesuai dengan yang diharapkan.
+    - Memastikan fungsi register dipanggil.
+
+b. Ketika User Gagal Register
+    - Memastikan response data tidak null.
+    - Memastikan mengembalikan DataResource.Failure.
+    - Memastikan response data sesuai dengan yang diharapkan.
+    - Memastikan fungsi register dipanggil.
+
+c. Ketika User Berhasil Login
+    - Memastikan reponse data tidak null.
+    - Memastikan mengembalikan DataResource.Success.
+    - Memastikan response data sesuai dengan yang diharapkan.
+    - Memastikan fungsi login dipanggil.
+
+d. Ketika User Gagal Login
+    - Memastikan response data tidak null.
+    - Memastikan mengembalikan DataResource.Failure.
+    - Memastikan response data sesuai dengan yang diharapkan.
+    - Memastikan fungsi login dipanggil.
+
+AddStoryViewModel
+
+a. Ketika User Berhasil Menambahkan Story
+    - Memastikan reponse data tidak null.
+    - Memastikan mengembalikan DataResource.Success.
+    - Memastikan response data sesuai dengan yang diharapkan.
+    - Memastikan fungsi tambah story dipanggil.
+
+b. Ketika User Gagal Menambahkan Story
+    - Memastikan response data tidak null.
+    - Memastikan mengembalikan DataResource.Failure.
+    - Memastikan response data sesuai dengan yang diharapkan.
+    - Memastikan fungsi tambah story dipanggil.
+
+MapsViewModel
+
+a. Ketika User Berhasil Mendapatkan List Story
+    - Memastikan reponse data tidak null.
+    - Memastikan mengembalikan DataResource.Success.
+    - Memastikan story list pada response tidak kosong.
+    - Memastikan response data sesuai dengan yang diharapkan.
+    - Memastikan fungsi get list story dipanggil.
+
+b. Ketika User Berhasil Mendapatkan List Story tetapi data kosong
+    - Memastikan reponse data tidak null.
+    - Memastikan mengembalikan DataResource.Success.
+    - Memastikan story list pada response kosong.
+    - Memastikan response data sesuai dengan yang diharapkan.
+    - Memastikan fungsi get list story dipanggil.
+
+HomeViewModel
+
+a. Ketika User Berhasil Mendapatkan List Story
+    - Memastikan reponse data tidak null.
+    - Memastikan response data sesuai dengan yang diharapkan.
+    - Memastikan ukuran list data sesuai dengan yang diharapkan.
+    - Memastikan nama pada list data index ke-0 sesuai dengan yang diharapkan.
+    - Memastikan fungsi get list story dipanggil.
+
+b. Ketika User Berhasil Mendapatkan List Story tetapi data kosong
+    - Memastikan reponse data tidak null.
+    - Memastikan response data sesuai dengan yang diharapkan.
+    - Memastikan list data kosong sesuai dengan yang diharapkan.
+    - Memastikan fungsi get list story dipanggil.
+
+StoryRemoteMediatorTest
+
+a. Ketika Data Selanjutnya Tersedia
+    - Memastikan fungsi load mengembalikan RemoteMediator.MediatorResult.Success.
+    - Memastikan jumlah endOfPaginationReached bernilai false.
+
+# Integration Testing (Instrumental Testing)
+
+HomeActivityTest
+
+a. Ketika Berhasil Menampilkan List Story
+    - Memastikan RecyclerView tampil
+    - Memastikan RecyclerView berada pada posisi 4 (index ke-4)
+    - Memastikan text "Rivaldy" telah ditampilkan
+
+# End to End Testing (Instrumental Testing)
+
+MainActivityTest
+
+a. Ketika User Berhasil Mendapatkan List Story
+    - Memastikan RecyclerView tampil
+    - Memastikan RecyclerView berada pada posisi 5 (index ke-5)
+
+b. Menampilkan Detail Story
+    - Memastikan Menuju kehalaman Detail Story
+    - Memastikan TextView untuk nameTV tampil 
+    - Memastikan TextView untuk descriptionTV tampil 
+    - Memastikan TextView untuk dateCreatedTV tampil 
+    - Memastikan TextView untuk photoIV tampil 
+    - Memberi aksi klik kembali (backpressed)
+
+c. Menampilkan Maps
+    - Memastikan Floating Action Button untuk mapFAB tampil
+    - Memberi aksi klik pada Floating Action Button
+    - Memastikan Maps telah tampil
+    - Memberi aksi klik kembali (backpressed)
+
+c. Menampilkan Form Add Story
+    - Memastikan opsi Menu addStoryMenu tampil
+    - Memberi tindakan pilih option menu "Add Story"
+    - Memastikan Text "Add Story" telah tampil
+    - Memberi aksi klik kembali (backpressed)
+
+d. Menampilkan Option Menu Yang ada
+    - Memberi aksi open Option Menu
+    - Memastikan opsi Menu dengan text "Language setting" tampil
+    - Memastikan opsi Menu dengan text "Log out" tampil
+    - Memberi aksi klik kembali (backpressed)
