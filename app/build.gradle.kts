@@ -57,7 +57,6 @@ dependencies {
     testImplementation(MyDependencies.junit)
     androidTestImplementation(MyDependencies.junit)
     androidTestImplementation(MyDependencies.test_ext_junit)
-    androidTestImplementation(MyDependencies.espresso_core)
 
     // Hilt
     implementation(MyDependencies.hilt_android)
@@ -86,7 +85,10 @@ dependencies {
     kaptAndroidTest(MyDependencies.hilt_android_compiler)
 
     // Espresso
+    androidTestImplementation(MyDependencies.espresso_core)
     androidTestImplementation(MyDependencies.espresso_contrib)
+    androidTestImplementation(MyDependencies.espresso_intents)
+    androidTestImplementation(MyDependencies.espresso_idling_resource)
 
     // Mock web server
     androidTestImplementation(MyDependencies.mock_web_server)

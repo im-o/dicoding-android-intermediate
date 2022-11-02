@@ -122,5 +122,5 @@ dependencies {
     testImplementation(MyDependencies.coroutines_test) //TestDispatcher
 
     // IDLE RESOURCE
-    api(MyDependencies.idling_resource)
+    api(MyDependencies.espresso_idling_resource)
 }

@@ -69,9 +69,8 @@ object MyDependencies {
 
     // Espresso
     const val espresso_contrib = "androidx.test.espresso:espresso-contrib:${Versions.espresso_test_version}"
-
-    // Idling Resource
-    const val idling_resource = "androidx.test.espresso:espresso-idling-resource:${Versions.espresso_test_version}"
+    const val espresso_intents = "androidx.test.espresso:espresso-intents:${Versions.espresso_test_version}"
+    const val espresso_idling_resource = "androidx.test.espresso:espresso-idling-resource:${Versions.espresso_test_version}"
 
     // MockWebServer
     const val mock_web_server = "com.squareup.okhttp3:mockwebserver:${Versions.mock_web_server_version}"
