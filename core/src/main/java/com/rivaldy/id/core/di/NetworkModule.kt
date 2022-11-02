@@ -21,10 +21,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+    var baseUrl = BuildConfig.BASE_URL
 
     @Provides
     fun provideBaseUrl(): String {
-        return BuildConfig.BASE_URL
+        return baseUrl
     }
 
     @Provides

@@ -29,10 +29,12 @@ object Versions {
     const val glide_version = "4.14.2"
     const val swipe_refresh_version = "1.1.0"
     const val camerax_version = "1.1.0-beta01"
+    const val google_maps_version = "18.1.0"
     const val desugar_version = "1.1.5"
     const val paging_version = "3.1.1"
     const val room_paging_version = "2.4.0-rc01"
     const val mockito_version = "4.0.0"
     const val core_testing_version = "2.1.0"
     const val coroutines_test_version = "1.6.4"
+    const val mock_web_server_version = "4.9.3"
 }

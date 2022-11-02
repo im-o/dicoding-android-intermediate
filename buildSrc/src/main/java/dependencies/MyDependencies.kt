@@ -46,6 +46,9 @@ object MyDependencies {
     const val camerax_view = "androidx.camera:camera-view:${Versions.camerax_version}"
     const val camerax_lifecycle = "androidx.camera:camera-lifecycle:${Versions.camerax_version}"
 
+    // Google Maps
+    const val google_maps = "com.google.android.gms:play-services-maps:${Versions.google_maps_version}"
+
     // Desugar
     const val desugar = "com.android.tools:desugar_jdk_libs:${Versions.desugar_version}"
 
@@ -60,4 +63,18 @@ object MyDependencies {
     // Special Testing
     const val core_testing = "androidx.arch.core:core-testing:${Versions.core_testing_version}"
     const val coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines_test_version}"
+
+    // Hilt Android Testing
+    const val hilt_android_testing = "com.google.dagger:hilt-android-testing:${Versions.hilt_android}"
+
+    // Espresso
+    const val espresso_contrib = "androidx.test.espresso:espresso-contrib:${Versions.espresso_test_version}"
+
+    // Idling Resource
+    const val idling_resource = "androidx.test.espresso:espresso-idling-resource:${Versions.espresso_test_version}"
+
+    // MockWebServer
+    const val mock_web_server = "com.squareup.okhttp3:mockwebserver:${Versions.mock_web_server_version}"
+    const val mock_web_server_okhttp3 = "com.squareup.okhttp3:okhttp-tls:${Versions.mock_web_server_version}"
+
 }

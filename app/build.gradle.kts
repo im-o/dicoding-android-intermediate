@@ -18,7 +18,7 @@ android {
         versionCode = Versions.version_code
         versionName = Versions.version_name
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.rivaldy.id.dicoding.util.HiltTestRunner"
     }
 
     buildTypes {
@@ -49,12 +49,13 @@ android {
 dependencies {
     implementation(project(Modules.commons))
     implementation(project(Modules.core))
-    implementation("com.google.android.gms:play-services-maps:18.1.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+
+    // Maps SDK for Android
+    implementation(MyDependencies.google_maps)
 
     // DEFAULT DEPENDENCIES
     testImplementation(MyDependencies.junit)
+    androidTestImplementation(MyDependencies.junit)
     androidTestImplementation(MyDependencies.test_ext_junit)
     androidTestImplementation(MyDependencies.espresso_core)
 
@@ -72,7 +73,22 @@ dependencies {
     testImplementation(MyDependencies.mockito)
     testImplementation(MyDependencies.mockito_inline)
 
-    //special testing
+    // Special testing
+    androidTestImplementation(MyDependencies.core_testing) //InstantTaskExecutorRule
+    androidTestImplementation(MyDependencies.coroutines_test) //TestDispatcher
     testImplementation(MyDependencies.core_testing) // InstantTaskExecutorRule
     testImplementation(MyDependencies.coroutines_test) //TestDispatcher
+
+    // Hilt for testing
+    testImplementation(MyDependencies.hilt_android_testing) // For Robolectric tests.
+    kaptTest(MyDependencies.hilt_android_compiler)
+    androidTestImplementation(MyDependencies.hilt_android_testing) // For instrumented tests.
+    kaptAndroidTest(MyDependencies.hilt_android_compiler)
+
+    // Espresso
+    androidTestImplementation(MyDependencies.espresso_contrib)
+
+    // Mock web server
+    androidTestImplementation(MyDependencies.mock_web_server)
+    androidTestImplementation(MyDependencies.mock_web_server_okhttp3)
 }

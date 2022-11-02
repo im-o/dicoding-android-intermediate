@@ -115,9 +115,12 @@ dependencies {
     testImplementation(MyDependencies.mockito)
     testImplementation(MyDependencies.mockito_inline)
 
-    //special testing
+    // SPECIAL TESTING
     androidTestImplementation(MyDependencies.core_testing) //InstantTaskExecutorRule
     androidTestImplementation(MyDependencies.coroutines_test) //TestDispatcher
     testImplementation(MyDependencies.core_testing) // InstantTaskExecutorRule
     testImplementation(MyDependencies.coroutines_test) //TestDispatcher
+
+    // IDLE RESOURCE
+    api(MyDependencies.idling_resource)
 }
