@@ -3,15 +3,6 @@
   "message": "Stories fetched successfully",
   "listStory": [
     {
-      "id": "story-ZsrJXWeR5eO4xf2r",
-      "name": "Rivaldy",
-      "description": "Something when wrong, why? Because I'm a good programmer, try to be a good programmer too",
-      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1667368325873_PKiMJ9DN.jpg",
-      "createdAt": "2022-11-02T05:52:05.875Z",
-      "lat": -7.273713333333333,
-      "lon": 112.69951166666667
-    },
-    {
       "id": "story-ZrotxUIHPim1q8OO",
       "name": "reviewer",
       "description": "reviewer ",
@@ -46,6 +37,15 @@
       "createdAt": "2022-11-02T05:04:18.764Z",
       "lat": -7.6760633,
       "lon": 109.07915
+    },
+    {
+      "id": "story-ZsrJXWeR5eO4xf2r",
+      "name": "Rivaldy",
+      "description": "Something when wrong, why? Because I'm a good programmer, try to be a good programmer too",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1667368325873_PKiMJ9DN.jpg",
+      "createdAt": "2022-11-02T05:52:05.875Z",
+      "lat": -7.273713333333333,
+      "lon": 112.69951166666667
     },
     {
       "id": "story-Oj_LmzB9RcUJOUGK",

@@ -4,7 +4,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
@@ -50,16 +49,14 @@ class HomeActivityTest {
     }
 
     @Test
-    fun getLoadStories_Success() {
+    fun loadStories_Success() {
         ActivityScenario.launch(HomeActivity::class.java)
 
         val mockResponse = MockResponse().setResponseCode(200).setBody(JsonConverter.readStringFromFile("success_response.json"))
         mockWebServer.enqueue(mockResponse)
 
         onView(withId(R.id.listDataRV)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        onView(withId(R.id.listDataRV)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(0))
-        onView(withId(R.id.listDataRV)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, ViewActions.click()))
-        onView(withId(R.id.nameTV)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        onView(withId(R.id.nameTV)).check(ViewAssertions.matches(withText("Rivaldy")))
+        onView(withId(R.id.listDataRV)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(4))
+        onView(withText("Rivaldy")).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 }
