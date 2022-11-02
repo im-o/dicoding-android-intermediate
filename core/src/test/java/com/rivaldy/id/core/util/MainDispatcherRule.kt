@@ -1,4 +1,4 @@
-package com.rivaldy.id.dicoding.util
+package com.rivaldy.id.core.util
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

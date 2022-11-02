@@ -7,9 +7,9 @@ import android.os.Bundle
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService.RemoteViewsFactory
 import com.bumptech.glide.Glide
-import com.rivaldy.id.core.data.datasource.local.db.dao.StoryDao
+import com.rivaldy.id.core.data.datasource.local.db.DbRepositoryImpl
 import com.rivaldy.id.core.data.model.local.db.StoryEntity
-import com.rivaldy.id.core.di.DatabaseModule.stackWidgetAppDatabase
+import com.rivaldy.id.core.di.DatabaseModule
 import com.rivaldy.id.dicoding.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -23,17 +23,18 @@ class StackRemoteViewsFactory internal constructor(
 ) : RemoteViewsFactory {
 
     private var moviesList: MutableList<StoryEntity?> = mutableListOf()
-    private lateinit var dao: StoryDao
+    private lateinit var repository: DbRepositoryImpl
 
     override fun onCreate() {
-        dao = stackWidgetAppDatabase(mContext).storyDao()
+        val db = DatabaseModule.provideAppDatabase(mContext)
+        repository = DbRepositoryImpl(db)
     }
 
     override fun onDataSetChanged() {
         val identifyToken: Long = Binder.clearCallingIdentity()
         runBlocking(Dispatchers.IO) {
             try {
-                moviesList = dao.getStoriesNoLiveData().toMutableList()
+                moviesList = repository.getStoriesNoLiveData().toMutableList()
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -47,7 +48,7 @@ class StackRemoteViewsFactory internal constructor(
 
     override fun getViewAt(position: Int): RemoteViews {
         val remoteViews = RemoteViews(mContext.packageName, R.layout.row_item_widget)
-        if (!moviesList.isNullOrEmpty()) {
+        if (moviesList.isNotEmpty()) {
             val urlImg = moviesList[position]?.photoUrl
             if (urlImg != null) {
                 try {

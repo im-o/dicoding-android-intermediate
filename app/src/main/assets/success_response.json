@@ -1,0 +1,96 @@
+{
+  "error": false,
+  "message": "Stories fetched successfully",
+  "listStory": [
+    {
+      "id": "story-ZrotxUIHPim1q8OO",
+      "name": "reviewer",
+      "description": "reviewer ",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1667367947119_8M6whYQA.jpg",
+      "createdAt": "2022-11-02T05:45:47.119Z",
+      "lat": 0.5781855,
+      "lon": 123.0563492
+    },
+    {
+      "id": "story-6GRt5o1d2P1CRgBL",
+      "name": "amir",
+      "description": "hello",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1667367615902_dKupUMWt.jpg",
+      "createdAt": "2022-11-02T05:40:15.903Z",
+      "lat": -7.273713333333333,
+      "lon": 112.69951166666667
+    },
+    {
+      "id": "story-tFRnueoR6EUcl0AP",
+      "name": "review",
+      "description": "macloc",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1667367324126_Zn06JTQW.jpg",
+      "createdAt": "2022-11-02T05:35:24.129Z",
+      "lat": 37.4219645,
+      "lon": -122.0840505
+    },
+    {
+      "id": "story-UzHGiJwMHAV6OPGI",
+      "name": "muhammhassan",
+      "description": "desc",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1667365458763_UP4GMsFA.jpg",
+      "createdAt": "2022-11-02T05:04:18.764Z",
+      "lat": -7.6760633,
+      "lon": 109.07915
+    },
+    {
+      "id": "story-ZsrJXWeR5eO4xf2r",
+      "name": "Rivaldy",
+      "description": "Something when wrong, why? Because I'm a good programmer, try to be a good programmer too",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1667368325873_PKiMJ9DN.jpg",
+      "createdAt": "2022-11-02T05:52:05.875Z",
+      "lat": -7.273713333333333,
+      "lon": 112.69951166666667
+    },
+    {
+      "id": "story-Oj_LmzB9RcUJOUGK",
+      "name": "kareem",
+      "description": "ajak",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1667364962856_QnixtH0v.jpg",
+      "createdAt": "2022-11-02T04:56:02.859Z",
+      "lat": -6.2433825,
+      "lon": 106.7795893
+    },
+    {
+      "id": "story-rQ02TYdsZWe42gz1",
+      "name": "kareem",
+      "description": "aku",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1667364792065_31bCxAcv.jpg",
+      "createdAt": "2022-11-02T04:53:12.068Z",
+      "lat": -6.2433825,
+      "lon": 106.7795893
+    },
+    {
+      "id": "story-C5_KR_3CXKxWZ6Si",
+      "name": "kareem",
+      "description": "haj",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1667364660602_IOA3W7QM.jpg",
+      "createdAt": "2022-11-02T04:51:00.605Z",
+      "lat": -6.2433825,
+      "lon": 106.7795893
+    },
+    {
+      "id": "story-DIk4chOyJ5qDkpev",
+      "name": "Muhammad Rizky",
+      "description": "every crime must be punishment",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1667361022561_7B5SMaAU.jpg",
+      "createdAt": "2022-11-02T03:50:22.563Z",
+      "lat": 37.421997,
+      "lon": -122.084
+    },
+    {
+      "id": "story-rISJbOWUE-uqxVe5",
+      "name": "Muhammad Rizky",
+      "description": "my name is kang",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1667360983181_1JzUYUCu.jpg",
+      "createdAt": "2022-11-02T03:49:43.182Z",
+      "lat": 37.421997,
+      "lon": -122.084
+    }
+  ]
+}

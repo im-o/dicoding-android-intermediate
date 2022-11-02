@@ -26,4 +26,6 @@
     <string name="failed_take_picture">Failed to take picture</string>
     <string name="choose_picture">Choose a Picture</string>
     <string name="map">Map</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
 </resources>

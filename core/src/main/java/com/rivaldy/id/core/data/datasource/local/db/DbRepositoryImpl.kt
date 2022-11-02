@@ -16,4 +16,6 @@ class DbRepositoryImpl @Inject constructor(
     override suspend fun clearStoriesDb() {
         db.storyDao().clearStories()
     }
+
+    override suspend fun getStoriesNoLiveData() = db.storyDao().getStoriesNoLiveData()
 }

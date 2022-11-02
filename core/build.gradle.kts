@@ -49,7 +49,7 @@ android {
     kotlinOptions {
         val commonCompilerArgs = listOf<String>()
         jvmTarget = JavaVersion.VERSION_11.toString()
-        freeCompilerArgs = commonCompilerArgs + listOf("-Xopt-in=kotlin.RequiresOptIn")
+        freeCompilerArgs = commonCompilerArgs + listOf("-opt-in=kotlin.RequiresOptIn")
     }
     packagingOptions {
         resources {
@@ -110,4 +110,17 @@ dependencies {
     // PAGING
     api(MyDependencies.paging_runtime)
     api(MyDependencies.room_paging)
+
+    // MOCKITO
+    testImplementation(MyDependencies.mockito)
+    testImplementation(MyDependencies.mockito_inline)
+
+    // SPECIAL TESTING
+    androidTestImplementation(MyDependencies.core_testing) //InstantTaskExecutorRule
+    androidTestImplementation(MyDependencies.coroutines_test) //TestDispatcher
+    testImplementation(MyDependencies.core_testing) // InstantTaskExecutorRule
+    testImplementation(MyDependencies.coroutines_test) //TestDispatcher
+
+    // IDLE RESOURCE
+    api(MyDependencies.espresso_idling_resource)
 }
