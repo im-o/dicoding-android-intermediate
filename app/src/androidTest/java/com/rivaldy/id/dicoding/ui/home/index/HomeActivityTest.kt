@@ -62,14 +62,4 @@ class HomeActivityTest {
         onView(withId(R.id.nameTV)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         onView(withId(R.id.nameTV)).check(ViewAssertions.matches(withText("Rivaldy")))
     }
-
-    @Test
-    fun getLoadStories_Empty() {
-        ActivityScenario.launch(HomeActivity::class.java)
-
-        val mockResponse = MockResponse().setResponseCode(200).setBody(JsonConverter.readStringFromFile("success_empty_response.json"))
-        mockWebServer.enqueue(mockResponse)
-
-        onView(withId(R.id.noDataTV)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-    }
 }
