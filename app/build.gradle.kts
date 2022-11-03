@@ -52,6 +52,7 @@ dependencies {
 
     // Maps SDK for Android
     implementation(MyDependencies.google_maps)
+    implementation(MyDependencies.google_maps_location)
 
     // DEFAULT DEPENDENCIES
     testImplementation(MyDependencies.junit)

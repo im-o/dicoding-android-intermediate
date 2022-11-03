@@ -48,6 +48,7 @@ object MyDependencies {
 
     // Google Maps
     const val google_maps = "com.google.android.gms:play-services-maps:${Versions.google_maps_version}"
+    const val google_maps_location = "com.google.android.gms:play-services-location:${Versions.google_maps_location_version}"
 
     // Desugar
     const val desugar = "com.android.tools:desugar_jdk_libs:${Versions.desugar_version}"

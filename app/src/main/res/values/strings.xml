@@ -28,4 +28,5 @@
     <string name="map">Map</string>
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
+    <string name="location_not_found">Location is not found. Try Again</string>
 </resources>

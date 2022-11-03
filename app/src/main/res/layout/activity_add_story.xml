@@ -115,63 +115,6 @@
                 app:layout_constraintStart_toStartOf="@+id/placeholderAddImage"
                 app:layout_constraintTop_toBottomOf="@+id/hintDescriptionTV" />
 
-            <TextView
-                android:id="@+id/hintLatitudeTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/latitude"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionET" />
-
-            <com.rivaldy.id.commons.widget.input.RegularInputEditText
-                android:id="@+id/latitudeET"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/space_48"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/bg_input_layout"
-                android:hint="@string/latitude"
-                android:inputType="numberDecimal|numberSigned"
-                android:paddingHorizontal="@dimen/space_16"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintStart_toStartOf="@+id/descriptionET"
-                app:layout_constraintTop_toBottomOf="@+id/hintLatitudeTV"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/hintLongitudeTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/longitude"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionET" />
-
-            <com.rivaldy.id.commons.widget.input.RegularInputEditText
-                android:id="@+id/longitudeET"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/space_48"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/bg_input_layout"
-                android:hint="@string/longitude"
-                android:inputType="numberDecimal|numberSigned"
-                android:paddingHorizontal="@dimen/space_16"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/hintLongitudeTV"
-                app:layout_constraintVertical_bias="0.0" />
-
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"
                 android:layout_width="wrap_content"

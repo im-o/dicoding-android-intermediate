@@ -30,6 +30,7 @@ object Versions {
     const val swipe_refresh_version = "1.1.0"
     const val camerax_version = "1.1.0-beta01"
     const val google_maps_version = "18.1.0"
+    const val google_maps_location_version = "21.0.0"
     const val desugar_version = "1.1.5"
     const val paging_version = "3.1.1"
     const val room_paging_version = "2.4.0-rc01"
