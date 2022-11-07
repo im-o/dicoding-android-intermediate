@@ -7,9 +7,18 @@ import android.os.Bundle
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService.RemoteViewsFactory
 import com.bumptech.glide.Glide
-import com.rivaldy.id.core.data.datasource.local.db.DbRepositoryImpl
-import com.rivaldy.id.core.data.model.local.db.StoryEntity
-import com.rivaldy.id.core.di.DatabaseModule
+import com.rivaldy.id.core.data.datasource.local.pref.PreferenceRepositoryImpl
+import com.rivaldy.id.core.data.datasource.remote.rest.ApiService
+import com.rivaldy.id.core.data.datasource.remote.rest.RestApiRepositoryImpl
+import com.rivaldy.id.core.data.model.remote.story.Story
+import com.rivaldy.id.core.data.network.DataResource
+import com.rivaldy.id.core.di.NetworkModule.baseUrl
+import com.rivaldy.id.core.di.NetworkModule.providesConverterFactory
+import com.rivaldy.id.core.di.NetworkModule.providesLoggingInterceptor
+import com.rivaldy.id.core.di.NetworkModule.providesNetworkConnectionInterceptor
+import com.rivaldy.id.core.di.NetworkModule.providesOkHttpClient
+import com.rivaldy.id.core.di.NetworkModule.providesRetrofit
+import com.rivaldy.id.core.di.PreferenceModule.provideSharedPreference
 import com.rivaldy.id.dicoding.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -22,19 +31,24 @@ class StackRemoteViewsFactory internal constructor(
     private val mContext: Context
 ) : RemoteViewsFactory {
 
-    private var moviesList: MutableList<StoryEntity?> = mutableListOf()
-    private lateinit var repository: DbRepositoryImpl
+    private var moviesList: MutableList<Story?> = mutableListOf()
+    private lateinit var api: RestApiRepositoryImpl
 
     override fun onCreate() {
-        val db = DatabaseModule.provideAppDatabase(mContext)
-        repository = DbRepositoryImpl(db)
+        api = RestApiRepositoryImpl(apiService())
     }
 
     override fun onDataSetChanged() {
         val identifyToken: Long = Binder.clearCallingIdentity()
         runBlocking(Dispatchers.IO) {
             try {
-                moviesList = repository.getStoriesNoLiveData().toMutableList()
+                api.getStoriesApiCall(null, null, null).apply {
+                    if (this is DataResource.Success) {
+                        this.value.let {
+                            moviesList = it.listStory?.toMutableList() ?: mutableListOf()
+                        }
+                    }
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -79,4 +93,12 @@ class StackRemoteViewsFactory internal constructor(
     override fun getItemId(position: Int): Long = 0
 
     override fun hasStableIds(): Boolean = false
+
+    private fun apiService(): ApiService {
+        val pref = PreferenceRepositoryImpl(provideSharedPreference(mContext))
+        val networkConnectionInterceptor = providesNetworkConnectionInterceptor(mContext)
+        val okHttpClient = providesOkHttpClient(providesLoggingInterceptor(), networkConnectionInterceptor, pref)
+        val retrofit = providesRetrofit(baseUrl, providesConverterFactory(), okHttpClient)
+        return retrofit.create(ApiService::class.java)
+    }
 }
