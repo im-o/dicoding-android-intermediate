@@ -3,7 +3,7 @@
 AuthViewModel
 
 a. Ketika User Berhasil Register
-    - Memastikan reponse data tidak null.
+    - Memastikan response data tidak null.
     - Memastikan mengembalikan DataResource.Success.
     - Memastikan response data sesuai dengan yang diharapkan.
     - Memastikan fungsi register dipanggil.
@@ -15,7 +15,7 @@ b. Ketika User Gagal Register
     - Memastikan fungsi register dipanggil.
 
 c. Ketika User Berhasil Login
-    - Memastikan reponse data tidak null.
+    - Memastikan response data tidak null.
     - Memastikan mengembalikan DataResource.Success.
     - Memastikan response data sesuai dengan yang diharapkan.
     - Memastikan fungsi login dipanggil.
@@ -29,7 +29,7 @@ d. Ketika User Gagal Login
 AddStoryViewModel
 
 a. Ketika User Berhasil Menambahkan Story
-    - Memastikan reponse data tidak null.
+    - Memastikan response data tidak null.
     - Memastikan mengembalikan DataResource.Success.
     - Memastikan response data sesuai dengan yang diharapkan.
     - Memastikan fungsi tambah story dipanggil.
@@ -43,14 +43,14 @@ b. Ketika User Gagal Menambahkan Story
 MapsViewModel
 
 a. Ketika User Berhasil Mendapatkan List Story
-    - Memastikan reponse data tidak null.
+    - Memastikan response data tidak null.
     - Memastikan mengembalikan DataResource.Success.
     - Memastikan story list pada response tidak kosong.
     - Memastikan response data sesuai dengan yang diharapkan.
     - Memastikan fungsi get list story dipanggil.
 
 b. Ketika User Berhasil Mendapatkan List Story tetapi data kosong
-    - Memastikan reponse data tidak null.
+    - Memastikan response data tidak null.
     - Memastikan mengembalikan DataResource.Success.
     - Memastikan story list pada response kosong.
     - Memastikan response data sesuai dengan yang diharapkan.
@@ -59,14 +59,14 @@ b. Ketika User Berhasil Mendapatkan List Story tetapi data kosong
 HomeViewModel
 
 a. Ketika User Berhasil Mendapatkan List Story
-    - Memastikan reponse data tidak null.
+    - Memastikan response data tidak null.
     - Memastikan response data sesuai dengan yang diharapkan.
     - Memastikan ukuran list data sesuai dengan yang diharapkan.
     - Memastikan nama pada list data index ke-0 sesuai dengan yang diharapkan.
     - Memastikan fungsi get list story dipanggil.
 
 b. Ketika User Berhasil Mendapatkan List Story tetapi data kosong
-    - Memastikan reponse data tidak null.
+    - Memastikan response data tidak null.
     - Memastikan response data sesuai dengan yang diharapkan.
     - Memastikan list data kosong sesuai dengan yang diharapkan.
     - Memastikan fungsi get list story dipanggil.
@@ -76,6 +76,75 @@ StoryRemoteMediatorTest
 a. Ketika Data Selanjutnya Tersedia
     - Memastikan fungsi load mengembalikan RemoteMediator.MediatorResult.Success.
     - Memastikan jumlah endOfPaginationReached bernilai false.
+
+DbRepositoryImpl
+
+a. Ketika Berhasil Insert List Story
+    - Memastikan fungsi insert list story dipanggil.
+
+b. Ketika Berhasil Delete List Story
+    - Memastikan fungsi delete list story dipanggil.
+
+c. Ketika Berhasil Mendapatkan List Story
+    - Memastikan data tidak null.
+    - Memastikan data tidak kosong.
+    - Memastikan jumlah list data sesuai dengan yang diharapkan.
+    - Memastikan list data sesuai dengan data yang diharapkan.
+    - Memastikan fungsi get list story dipanggil.
+
+d. Ketika Berhasil Mendapatkan List Story tetapi data kosong
+    - Memastikan data tidak null.
+    - Memastikan data kosong.
+    - Memastikan fungsi get list story dipanggil.
+
+RestApiRepositoryImplTest
+
+a. Ketika User Berhasil Register
+    - Memastikan response data tidak null.
+    - Memastikan mengembalikan DataResource.Success.
+    - Memastikan response data sesuai dengan yang diharapkan.
+    - Memastikan fungsi register dipanggil.
+
+b. Ketika User Gagal Register
+    - Memastikan response data tidak null.
+    - Memastikan response data sesuai dengan yang diharapkan.
+    - Memastikan fungsi register dipanggil.
+
+c. Ketika User Berhasil Login
+    - Memastikan response data tidak null.
+    - Memastikan mengembalikan DataResource.Success.
+    - Memastikan response data sesuai dengan yang diharapkan.
+    - Memastikan fungsi login dipanggil.
+
+d. Ketika User Gagal Login
+    - Memastikan response data tidak null.
+    - Memastikan response data sesuai dengan yang diharapkan.
+    - Memastikan fungsi login dipanggil.
+
+e. Ketika User Berhasil Mendapatkan List Story
+    - Memastikan response data tidak null.
+    - Memastikan mengembalikan DataResource.Success.
+    - Memastikan story list pada response tidak kosong.
+    - Memastikan response data sesuai dengan yang diharapkan.
+    - Memastikan fungsi get list story dipanggil.
+
+f. Ketika User Berhasil Mendapatkan List Story tetapi data kosong
+    - Memastikan response data tidak null.
+    - Memastikan mengembalikan DataResource.Success.
+    - Memastikan story list pada response kosong.
+    - Memastikan response data sesuai dengan yang diharapkan.
+    - Memastikan fungsi get list story dipanggil.
+
+g. Ketika User Berhasil Menambahkan Story
+    - Memastikan response data tidak null.
+    - Memastikan mengembalikan DataResource.Success.
+    - Memastikan response data sesuai dengan yang diharapkan.
+    - Memastikan fungsi tambah story dipanggil.
+
+h. Ketika User Gagal Menambahkan Story
+    - Memastikan response data tidak null.
+    - Memastikan response data sesuai dengan yang diharapkan.
+    - Memastikan fungsi tambah story dipanggil.
 
 # Integration Testing (Instrumental Testing)
 
