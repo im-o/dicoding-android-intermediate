@@ -31,21 +31,21 @@ class StackRemoteViewsFactory internal constructor(
     private val mContext: Context
 ) : RemoteViewsFactory {
 
-    private var moviesList: MutableList<Story?> = mutableListOf()
-    private lateinit var api: RestApiRepositoryImpl
+    private var storyList: MutableList<Story?> = mutableListOf()
+    private lateinit var apiRepository: RestApiRepositoryImpl
 
     override fun onCreate() {
-        api = RestApiRepositoryImpl(apiService())
+        apiRepository = RestApiRepositoryImpl(apiService())
     }
 
     override fun onDataSetChanged() {
         val identifyToken: Long = Binder.clearCallingIdentity()
         runBlocking(Dispatchers.IO) {
             try {
-                api.getStoriesApiCall(null, null, null).apply {
+                apiRepository.getStoriesApiCall(null, null, null).apply {
                     if (this is DataResource.Success) {
                         this.value.let {
-                            moviesList = it.listStory?.toMutableList() ?: mutableListOf()
+                            storyList = it.listStory?.toMutableList() ?: mutableListOf()
                         }
                     }
                 }
@@ -58,12 +58,12 @@ class StackRemoteViewsFactory internal constructor(
 
     override fun onDestroy() {}
 
-    override fun getCount(): Int = moviesList.size
+    override fun getCount(): Int = storyList.size
 
     override fun getViewAt(position: Int): RemoteViews {
         val remoteViews = RemoteViews(mContext.packageName, R.layout.row_item_widget)
-        if (moviesList.isNotEmpty()) {
-            val urlImg = moviesList[position]?.photoUrl
+        if (storyList.isNotEmpty()) {
+            val urlImg = storyList[position]?.photoUrl
             if (urlImg != null) {
                 try {
                     val bitmap = Glide.with(mContext).asBitmap().load(urlImg).submit().get()
@@ -76,10 +76,10 @@ class StackRemoteViewsFactory internal constructor(
             }
         }
         val extras = Bundle()
-        extras.putString(ImageStoryWidgetProvider.EXTRA_NAME, moviesList[position]?.name)
-        extras.putString(ImageStoryWidgetProvider.EXTRA_DESCRIPTION, moviesList[position]?.description)
-        extras.putString(ImageStoryWidgetProvider.EXTRA_CREATED, moviesList[position]?.createdAt)
-        extras.putString(ImageStoryWidgetProvider.EXTRA_PHOTO_URL, moviesList[position]?.photoUrl)
+        extras.putString(ImageStoryWidgetProvider.EXTRA_NAME, storyList[position]?.name)
+        extras.putString(ImageStoryWidgetProvider.EXTRA_DESCRIPTION, storyList[position]?.description)
+        extras.putString(ImageStoryWidgetProvider.EXTRA_CREATED, storyList[position]?.createdAt)
+        extras.putString(ImageStoryWidgetProvider.EXTRA_PHOTO_URL, storyList[position]?.photoUrl)
         val fillInIntent = Intent()
         fillInIntent.putExtras(extras)
         remoteViews.setOnClickFillInIntent(R.id.imageStoryIV, fillInIntent)
