@@ -25,7 +25,7 @@ import com.rivaldy.id.core.utils.UtilFunctions
 import com.rivaldy.id.core.utils.UtilFunctions.rotateBitmap
 import com.rivaldy.id.dicoding.R
 import com.rivaldy.id.dicoding.databinding.ActivityAddStoryBinding
-import com.rivaldy.id.dicoding.util.CameraActivity
+import com.rivaldy.id.dicoding.ui.camera.CameraActivity
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull

@@ -1,4 +1,4 @@
-package com.rivaldy.id.dicoding.util
+package com.rivaldy.id.dicoding.ui.camera
 
 import android.app.Application
 import android.content.ContentResolver
