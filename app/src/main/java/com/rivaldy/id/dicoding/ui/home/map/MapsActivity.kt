@@ -10,7 +10,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.util.Pair
-import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -21,7 +20,6 @@ import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.rivaldy.id.commons.base.BaseActivity
-import com.rivaldy.id.commons.view.LoadingProgressDialog
 import com.rivaldy.id.core.data.model.remote.story.Story
 import com.rivaldy.id.core.data.model.remote.story.UserStoryResponse
 import com.rivaldy.id.core.data.network.DataResource
@@ -29,6 +27,7 @@ import com.rivaldy.id.core.utils.UtilConstants.DEFAULT_LIMIT_PAGE
 import com.rivaldy.id.core.utils.UtilConstants.ONLY_LOCATION_TYPE
 import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
 import com.rivaldy.id.core.utils.UtilExtensions.formatDateToViewFromISO
+import com.rivaldy.id.core.utils.UtilExtensions.loadImage
 import com.rivaldy.id.core.utils.UtilExtensions.myToast
 import com.rivaldy.id.dicoding.R
 import com.rivaldy.id.dicoding.databinding.ActivityMapsBinding
@@ -52,10 +51,12 @@ class MapsActivity : BaseActivity<ActivityMapsBinding>(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        mMap.uiSettings.isZoomControlsEnabled = true
-        mMap.uiSettings.isIndoorLevelPickerEnabled = true
-        mMap.uiSettings.isCompassEnabled = true
-        mMap.uiSettings.isMapToolbarEnabled = true
+        with(mMap.uiSettings) {
+            isZoomControlsEnabled = true
+            isIndoorLevelPickerEnabled = true
+            isCompassEnabled = true
+            isMapToolbarEnabled = true
+        }
         getMyLocation()
         setMapStyle()
         initObservers()
@@ -131,11 +132,7 @@ class MapsActivity : BaseActivity<ActivityMapsBinding>(), OnMapReadyCallback {
             nameTV.text = item.name
             descriptionTV.text = item.description
             dateCreatedTV.text = item.createdAt?.formatDateToViewFromISO()
-            Glide.with(root.context)
-                .load(item.photoUrl)
-                .error(com.rivaldy.id.commons.R.color.colorPrimary)
-                .placeholder(LoadingProgressDialog.getCircularProgressDrawable(root.context))
-                .into(photoIV)
+            photoIV.loadImage(item.photoUrl)
 
             constraintLayout.setOnClickListener {
                 val optionsCompat: ActivityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(

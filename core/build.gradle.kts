@@ -57,8 +57,6 @@ android {
             excludes += "META-INF/NOTICE.txt"
         }
     }
-
-    namespace = "com.rivaldy.id.core"
 }
 
 dependencies {

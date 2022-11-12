@@ -5,10 +5,9 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.rivaldy.id.commons.view.LoadingProgressDialog.getCircularProgressDrawable
 import com.rivaldy.id.core.data.model.local.db.StoryEntity
 import com.rivaldy.id.core.utils.UtilExtensions.formatDateToViewFromISO
+import com.rivaldy.id.core.utils.UtilExtensions.loadImage
 import com.rivaldy.id.dicoding.databinding.RowItemStoryBinding
 
 /** Created by github.com/im-o on 10/14/2022. */
@@ -23,12 +22,7 @@ class HomeAdapter(
                 nameTV.text = item?.name
                 descriptionTV.text = item?.description
                 dateCreatedTV.text = item?.createdAt?.formatDateToViewFromISO()
-                Glide.with(root.context)
-                    .load(item?.photoUrl)
-                    .error(com.rivaldy.id.commons.R.color.colorPrimary)
-                    .placeholder(getCircularProgressDrawable(root.context))
-                    .into(photoIV)
-
+                photoIV.loadImage(item?.photoUrl)
                 constraintLayout.setOnClickListener { listener(item ?: return@setOnClickListener, binding) }
             }
         }

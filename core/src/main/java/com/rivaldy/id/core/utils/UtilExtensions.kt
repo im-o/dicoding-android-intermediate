@@ -3,11 +3,14 @@ package com.rivaldy.id.core.utils
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.rivaldy.id.core.R
 import com.rivaldy.id.core.utils.UtilConstants.DATE_FORMAT_VIEW
+import com.rivaldy.id.core.utils.UtilFunctions.getCircularProgressDrawable
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -41,5 +44,13 @@ object UtilExtensions {
         val instant = Instant.parse(this)
         val formatter = DateTimeFormatter.ofPattern(DATE_FORMAT_VIEW).withZone(ZoneId.of(ZoneId.systemDefault().id))
         return formatter.format(instant)
+    }
+
+    fun ImageView.loadImage(url: String?) {
+        Glide.with(this.context)
+            .load(url)
+            .error(R.color.colorPrimary)
+            .placeholder(getCircularProgressDrawable(this.context))
+            .into(this)
     }
 }

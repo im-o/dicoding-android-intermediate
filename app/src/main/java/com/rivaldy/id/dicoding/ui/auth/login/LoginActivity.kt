@@ -34,7 +34,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
     private fun initView() {
-        binding.hintFooterTV.text = spannedHintFooterAuth(this, getString(R.string.no_have_account), getString(R.string.sign_up))
+        binding.hintFooterTV.text = spannedHintFooterAuth(
+            this, getString(R.string.no_have_account), getString(R.string.sign_up)
+        )
     }
 
     private fun initObservers() {

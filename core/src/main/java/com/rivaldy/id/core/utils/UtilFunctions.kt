@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.rivaldy.id.core.BuildConfig
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -60,6 +61,15 @@ object UtilFunctions {
             Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
         }
     }
+
+    fun getCircularProgressDrawable(context: Context): CircularProgressDrawable {
+        val circularProgressDrawable = CircularProgressDrawable(context)
+        circularProgressDrawable.strokeWidth = 5f
+        circularProgressDrawable.centerRadius = 30f
+        circularProgressDrawable.start()
+        return circularProgressDrawable
+    }
+
     interface DialogButtonClickListener {
         fun onPositiveButtonClick()
         fun onNegativeButtonClick()
