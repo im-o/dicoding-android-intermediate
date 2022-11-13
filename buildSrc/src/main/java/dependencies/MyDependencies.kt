@@ -23,6 +23,11 @@ object MyDependencies {
     const val hilt_navigation = "androidx.hilt:hilt-navigation-fragment:${Versions.hilt_navigation}"
     const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle_ktx_version}"
 
+    //Room
+    const val room = "androidx.room:room-runtime:${Versions.room_version}"
+    const val room_kapt = "androidx.room:room-compiler:${Versions.room_version}"
+    const val room_ktx = "androidx.room:room-ktx:${Versions.room_version}" // optional - Kotlin Extensions and Coroutines support for Room
+
     //Splash Screen
     const val splash_screen = "androidx.core:core-splashscreen:${Versions.splash_screen_version}"
 

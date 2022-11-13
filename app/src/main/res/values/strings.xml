@@ -4,23 +4,13 @@
     <string name="add_story">Add Story</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
-    <string name="create_account">Create a new account</string>
-    <string name="have_account">Have an account</string>
-    <string name="hello_welcome_back">Hello,\nWelcome Back</string>
     <string name="login_thumbnail">Login Thumbnail</string>
-    <string name="or">Or</string>
     <string name="sign_in">Sign in.</string>
     <string name="sign_up">Sign up.</string>
     <string name="no_have_account">Don\'t have an account?</string>
     <string name="already_have_account">Already have an account?</string>
-    <string name="dummy_password">rival123</string>
-    <string name="dummy_email">rivaldy@gmail.com</string>
-    <string name="name_cannot_empty">Name cannot be empty</string>
-    <string name="dummy_name">Hello, Im Guest.</string>
     <string name="image_story">Image story</string>
     <string name="no_story_showed">No story showed!</string>
-    <string name="see_location">See Location</string>
-    <string name="setting">Setting</string>
     <string name="add_image">Add Image</string>
     <string name="description">Description</string>
     <string name="date">Date</string>
@@ -28,11 +18,11 @@
     <string name="log_out">Log out</string>
     <string name="language_setting">Language setting</string>
     <string name="message_logout">Are you sure want to logout?</string>
-    <string name="title_logout">Logout</string>
     <string name="take_picture">Take Picture</string>
     <string name="take_picture_from_gallery">Take Picture From Gallery</string>
     <string name="switch_camera">Switch Camera</string>
     <string name="failed_showing_camera">Failed to showing camera</string>
     <string name="permissions_not_granted">Permissions not granted by the user.</string>
     <string name="failed_take_picture">Failed to take picture</string>
+    <string name="choose_picture">Choose a Picture</string>
 </resources>

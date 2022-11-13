@@ -1,6 +1,5 @@
 package com.rivaldy.id.dicoding.util
 
-import android.Manifest
 import android.app.Application
 import android.content.ContentResolver
 import android.content.Context
@@ -21,6 +20,7 @@ import com.rivaldy.id.core.utils.UtilExtensions.myToast
 import com.rivaldy.id.core.utils.UtilFunctions.timestamp
 import com.rivaldy.id.dicoding.R
 import com.rivaldy.id.dicoding.databinding.ActivityCameraBinding
+import com.rivaldy.id.dicoding.ui.home.add_story.AddStoryActivity
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -33,7 +33,7 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>() {
     override fun getViewBinding() = ActivityCameraBinding.inflate(layoutInflater)
 
     override fun initData() {
-        if (allPermissionsGranted()) startCamera() else ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
+        if (allPermissionsGranted()) startCamera() else ActivityCompat.requestPermissions(this, AddStoryActivity.REQUIRED_PERMISSIONS, AddStoryActivity.REQUEST_CODE_PERMISSIONS)
         initClick()
     }
 
@@ -46,13 +46,9 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>() {
         }
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+        if (requestCode == AddStoryActivity.REQUEST_CODE_PERMISSIONS) {
             if (!allPermissionsGranted()) {
                 myToast(getString(R.string.permissions_not_granted))
                 finish()
@@ -60,7 +56,7 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>() {
         }
     }
 
-    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all { ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED }
+    private fun allPermissionsGranted() = AddStoryActivity.REQUIRED_PERMISSIONS.all { ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED }
 
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
@@ -110,7 +106,7 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>() {
         val intent = Intent()
         intent.action = ACTION_GET_CONTENT
         intent.type = "image/*"
-        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        val chooser = Intent.createChooser(intent, getString(R.string.choose_picture))
         launcherIntentGallery.launch(chooser)
     }
 
@@ -146,7 +142,5 @@ class CameraActivity : BaseActivity<ActivityCameraBinding>() {
         const val EXTRA_IS_BACK_CAMERA = "extra_is_back_camera"
         const val CAMERA_X_RESULT = 200
         const val GALLERY_CODE_RESULT = 100
-        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
-        private const val REQUEST_CODE_PERMISSIONS = 10
     }
 }

@@ -78,6 +78,11 @@ dependencies {
         exclude("androidx.lifecycle", "lifecycle-viewmodel-ktx")
     }
 
+    // Room
+    api(MyDependencies.room)
+    kapt(MyDependencies.room_kapt)
+    api(MyDependencies.room_ktx)
+
     // LIFECYCLE VIEWMODEL
     api(MyDependencies.lifecycle_viewmodel)
 

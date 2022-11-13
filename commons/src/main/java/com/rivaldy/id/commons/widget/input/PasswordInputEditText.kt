@@ -13,7 +13,6 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.rivaldy.id.commons.R
-import com.rivaldy.id.core.utils.UtilFunctions.logE
 
 
 /** Created by github.com/im-o on 10/4/2022. */
@@ -36,7 +35,6 @@ class PasswordInputEditText : AppCompatEditText, View.OnTouchListener {
     }
 
     override fun onTouch(view: View?, event: MotionEvent): Boolean {
-        logE("onTouch")
         if (compoundDrawables[2] != null) {
             val toggleButtonStart: Float
             val toggleButtonEnd: Float

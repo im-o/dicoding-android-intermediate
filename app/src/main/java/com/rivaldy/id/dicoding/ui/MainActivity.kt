@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkUserSession() {
-        if (viewModel.getLoginInfo().token?.isNotEmpty() == true) {
+        if (viewModel.getUserTokenPref().isNotEmpty()) {
             openActivity(HomeActivity::class.java)
         } else {
             openActivity(LoginActivity::class.java)

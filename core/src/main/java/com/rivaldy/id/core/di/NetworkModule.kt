@@ -3,8 +3,8 @@ package com.rivaldy.id.core.di
 import android.content.Context
 import com.google.gson.GsonBuilder
 import com.rivaldy.id.core.BuildConfig
-import com.rivaldy.id.core.data.data_source.local.pref.PreferenceRepositoryImpl
-import com.rivaldy.id.core.data.data_source.remote.rest_api.ApiService
+import com.rivaldy.id.core.data.datasource.local.pref.PreferenceRepositoryImpl
+import com.rivaldy.id.core.data.datasource.remote.rest.ApiService
 import com.rivaldy.id.core.data.network.NetworkConnectionInterceptor
 import dagger.Module
 import dagger.Provides

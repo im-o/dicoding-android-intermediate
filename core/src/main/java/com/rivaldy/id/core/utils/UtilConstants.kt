@@ -12,6 +12,9 @@ object UtilConstants {
     const val FILTER_BY_ALCOHOLIC = "FILTER_BY_ALCOHOLIC"
     const val FILTER_BY_GLASSES = "FILTER_BY_GLASSES"
 
+    // STRING DB
+    const val DB_USER_STORY = "dicoding_story.db"
+
     // INT
     const val OTHER_ERROR = 999
     const val ZERO_DATA = 0

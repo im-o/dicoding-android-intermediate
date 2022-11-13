@@ -1,9 +1,13 @@
 package com.rivaldy.id.dicoding.ui.home.add_story
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import com.rivaldy.id.commons.base.BaseActivity
@@ -12,8 +16,8 @@ import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
 import com.rivaldy.id.core.utils.UtilExtensions.myToast
 import com.rivaldy.id.core.utils.UtilExtensions.showSnackBar
-import com.rivaldy.id.core.utils.UtilFunctions.isProbablyRunningOnEmulator
 import com.rivaldy.id.core.utils.UtilFunctions.rotateBitmap
+import com.rivaldy.id.dicoding.R
 import com.rivaldy.id.dicoding.databinding.ActivityAddStoryBinding
 import com.rivaldy.id.dicoding.util.CameraActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,7 +35,7 @@ class AddStoryActivity : BaseActivity<ActivityAddStoryBinding>() {
     override fun initData() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        if (!allPermissionsGranted()) ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
         initObservers()
         initClick()
         initListeners()
@@ -93,7 +97,7 @@ class AddStoryActivity : BaseActivity<ActivityAddStoryBinding>() {
             isRotateImage = true
             photoFile = it.data?.getSerializableExtra(CameraActivity.EXTRA_PICTURE) as File
             isBackCamera = it.data?.getBooleanExtra(CameraActivity.EXTRA_IS_BACK_CAMERA, true) as Boolean
-            val result = if (isProbablyRunningOnEmulator) rotateBitmap(BitmapFactory.decodeFile(photoFile?.path), isBackCamera) else BitmapFactory.decodeFile(photoFile?.path)
+            val result = rotateBitmap(BitmapFactory.decodeFile(photoFile?.path), isBackCamera)
             binding.imagePreviewIV.setImageBitmap(result)
             binding.imagePreviewCV.isVisible = true
             validationForm()
@@ -107,7 +111,21 @@ class AddStoryActivity : BaseActivity<ActivityAddStoryBinding>() {
         }
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (!allPermissionsGranted()) {
+                myToast(getString(R.string.permissions_not_granted))
+                finish()
+            }
+        }
+    }
+
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all { ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED }
+
     companion object {
         const val EXTRA_IS_SUCCESS_ADD_STORY = "extra_is_success_add_story"
+        val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+        const val REQUEST_CODE_PERMISSIONS = 10
     }
 }

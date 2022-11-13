@@ -1,9 +1,11 @@
 package com.rivaldy.id.core.di
 
 import android.content.SharedPreferences
-import com.rivaldy.id.core.data.data_source.local.pref.PreferenceRepositoryImpl
-import com.rivaldy.id.core.data.data_source.remote.rest_api.ApiService
-import com.rivaldy.id.core.data.data_source.remote.rest_api.RestApiRepositoryImpl
+import com.rivaldy.id.core.data.datasource.local.db.AppDatabase
+import com.rivaldy.id.core.data.datasource.local.db.DbRepositoryImpl
+import com.rivaldy.id.core.data.datasource.local.pref.PreferenceRepositoryImpl
+import com.rivaldy.id.core.data.datasource.remote.rest.ApiService
+import com.rivaldy.id.core.data.datasource.remote.rest.RestApiRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,4 +22,7 @@ object RepositoryModule {
 
     @Provides
     fun providesRestApiRepository(apiService: ApiService) = RestApiRepositoryImpl(apiService)
+
+    @Provides
+    fun providesDbRepository(appDatabase: AppDatabase) = DbRepositoryImpl(appDatabase)
 }

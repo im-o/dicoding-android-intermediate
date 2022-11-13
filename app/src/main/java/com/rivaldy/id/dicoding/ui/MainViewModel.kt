@@ -1,9 +1,7 @@
 package com.rivaldy.id.dicoding.ui
 
 import androidx.lifecycle.ViewModel
-import com.rivaldy.id.core.data.data_source.local.pref.PreferenceRepositoryImpl
-import com.rivaldy.id.core.data.data_source.remote.rest_api.RestApiRepositoryImpl
-import com.rivaldy.id.core.data.model.local.pref.LoginInfo
+import com.rivaldy.id.core.data.datasource.local.pref.PreferenceRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -11,13 +9,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val pref: PreferenceRepositoryImpl,
-    private val api: RestApiRepositoryImpl
+    private val pref: PreferenceRepositoryImpl
 ) : ViewModel() {
 
-    fun setLoginInfo(loginInfo: LoginInfo) = pref.setLoginInfo(loginInfo)
+    fun setUserTokenPref(token: String) = pref.setUserTokenPref(token)
 
-    fun getLoginInfo() = pref.getLoginInfo()
+    fun getUserTokenPref() = pref.getUserTokenPref()
 
     fun clearLoginInfo() = pref.clearLoginInfo()
 }
