@@ -25,4 +25,8 @@
     <string name="permissions_not_granted">Izin tidak diberikan oleh pengguna.</string>
     <string name="failed_take_picture">Gagal mengambil gambar</string>
     <string name="choose_picture">Pilih Gambar</string>
+    <string name="map">Peta</string>
+    <string name="latitude">Garis Lintang</string>
+    <string name="longitude">Garis Bujur</string>
+    <string name="location_not_found">Lokasi tidak ditemukan. Coba lagi</string>
 </resources>

@@ -33,6 +33,7 @@ android {
     }
 
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
@@ -45,15 +46,17 @@ android {
     buildFeatures {
         viewBinding = true
     }
-
+    kotlinOptions {
+        val commonCompilerArgs = listOf<String>()
+        jvmTarget = JavaVersion.VERSION_11.toString()
+        freeCompilerArgs = commonCompilerArgs + listOf("-opt-in=kotlin.RequiresOptIn")
+    }
     packagingOptions {
         resources {
             excludes += "META-INF/LICENSE.txt"
             excludes += "META-INF/NOTICE.txt"
         }
     }
-
-    namespace = "com.rivaldy.id.core"
 }
 
 dependencies {
@@ -91,12 +94,31 @@ dependencies {
 
     // GLIDE
     api(MyDependencies.glide)
-    annotationProcessor(MyDependencies.glide_compiler)
-    implementation(MyDependencies.joda_time)
+    kapt(MyDependencies.glide_compiler)
     api(MyDependencies.swipe_refresh_layout)
 
     // CAMERA X
     api(MyDependencies.camerax_camera2)
     api(MyDependencies.camerax_lifecycle)
     api(MyDependencies.camerax_view)
+
+    // DESUGAR
+    coreLibraryDesugaring(MyDependencies.desugar)
+
+    // PAGING
+    api(MyDependencies.paging_runtime)
+    api(MyDependencies.room_paging)
+
+    // MOCKITO
+    testImplementation(MyDependencies.mockito)
+    testImplementation(MyDependencies.mockito_inline)
+
+    // SPECIAL TESTING
+    androidTestImplementation(MyDependencies.core_testing) //InstantTaskExecutorRule
+    androidTestImplementation(MyDependencies.coroutines_test) //TestDispatcher
+    testImplementation(MyDependencies.core_testing) // InstantTaskExecutorRule
+    testImplementation(MyDependencies.coroutines_test) //TestDispatcher
+
+    // IDLE RESOURCE
+    api(MyDependencies.espresso_idling_resource)
 }

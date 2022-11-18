@@ -11,7 +11,7 @@ import android.widget.RemoteViews
 import com.rivaldy.id.core.data.model.remote.story.Story
 import com.rivaldy.id.dicoding.BuildConfig
 import com.rivaldy.id.dicoding.R
-import com.rivaldy.id.dicoding.ui.home.detail_story.DetailStoryActivity
+import com.rivaldy.id.dicoding.ui.home.detailstory.DetailStoryActivity
 
 
 /** Created by github.com/im-o on 10/19/2022. */
@@ -27,7 +27,7 @@ class ImageStoryWidgetProvider : AppWidgetProvider() {
                 val itemStory = Story(createdAt, description, null, name, photoUrl)
                 val intentDetail = Intent(Intent.ACTION_VIEW)
                 intentDetail.putExtra(DetailStoryActivity.EXTRA_STORY, itemStory)
-                intentDetail.setClassName(BuildConfig.APPLICATION_ID, "${BuildConfig.APPLICATION_ID}.ui.home.detail_story.DetailStoryActivity")
+                intentDetail.setClassName(BuildConfig.APPLICATION_ID, "${BuildConfig.APPLICATION_ID}.ui.home.detailstory.DetailStoryActivity")
                 intentDetail.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 context?.startActivity(intentDetail)
             }

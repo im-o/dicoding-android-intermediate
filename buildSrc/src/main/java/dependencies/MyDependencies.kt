@@ -38,9 +38,6 @@ object MyDependencies {
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide_version}"
     const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide_version}"
 
-    // Joda Time
-    const val joda_time = "net.danlew:android.joda:${Versions.joda_version}"
-
     // Swipe Refresh Layout
     const val swipe_refresh_layout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipe_refresh_version}"
 
@@ -48,4 +45,36 @@ object MyDependencies {
     const val camerax_camera2 = "androidx.camera:camera-camera2:${Versions.camerax_version}"
     const val camerax_view = "androidx.camera:camera-view:${Versions.camerax_version}"
     const val camerax_lifecycle = "androidx.camera:camera-lifecycle:${Versions.camerax_version}"
+
+    // Google Maps
+    const val google_maps = "com.google.android.gms:play-services-maps:${Versions.google_maps_version}"
+    const val google_maps_location = "com.google.android.gms:play-services-location:${Versions.google_maps_location_version}"
+
+    // Desugar
+    const val desugar = "com.android.tools:desugar_jdk_libs:${Versions.desugar_version}"
+
+    // Paging 3
+    const val paging_runtime = "androidx.paging:paging-runtime-ktx:${Versions.paging_version}"
+    const val room_paging = "androidx.room:room-paging:${Versions.room_paging_version}"
+
+    // Mockito
+    const val mockito = "org.mockito:mockito-core:${Versions.mockito_version}"
+    const val mockito_inline = "org.mockito:mockito-inline:${Versions.mockito_version}"
+
+    // Special Testing
+    const val core_testing = "androidx.arch.core:core-testing:${Versions.core_testing_version}"
+    const val coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines_test_version}"
+
+    // Hilt Android Testing
+    const val hilt_android_testing = "com.google.dagger:hilt-android-testing:${Versions.hilt_android}"
+
+    // Espresso
+    const val espresso_contrib = "androidx.test.espresso:espresso-contrib:${Versions.espresso_test_version}"
+    const val espresso_intents = "androidx.test.espresso:espresso-intents:${Versions.espresso_test_version}"
+    const val espresso_idling_resource = "androidx.test.espresso:espresso-idling-resource:${Versions.espresso_test_version}"
+
+    // MockWebServer
+    const val mock_web_server = "com.squareup.okhttp3:mockwebserver:${Versions.mock_web_server_version}"
+    const val mock_web_server_okhttp3 = "com.squareup.okhttp3:okhttp-tls:${Versions.mock_web_server_version}"
+
 }

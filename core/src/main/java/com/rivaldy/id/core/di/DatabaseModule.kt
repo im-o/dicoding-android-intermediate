@@ -23,7 +23,6 @@ object DatabaseModule {
         return Room.databaseBuilder(context, AppDatabase::class.java, DB_USER_STORY).build()
     }
 
-    fun stackWidgetAppDatabase(context: Context): AppDatabase {
-        return Room.databaseBuilder(context, AppDatabase::class.java, DB_USER_STORY).build()
-    }
+    @Provides
+    fun provideStoryDao(appDatabase: AppDatabase) = appDatabase.storyDao()
 }

@@ -7,7 +7,7 @@
     app:cardCornerRadius="@dimen/space_6"
     app:cardElevation="@dimen/space_1"
     app:cardUseCompatPadding="true"
-    tools:context=".ui.home.detail_story.DetailStoryActivity">
+    tools:context=".ui.home.detailstory.DetailStoryActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

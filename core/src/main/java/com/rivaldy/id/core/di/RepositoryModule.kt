@@ -3,9 +3,11 @@ package com.rivaldy.id.core.di
 import android.content.SharedPreferences
 import com.rivaldy.id.core.data.datasource.local.db.AppDatabase
 import com.rivaldy.id.core.data.datasource.local.db.DbRepositoryImpl
+import com.rivaldy.id.core.data.datasource.local.db.dao.StoryDao
 import com.rivaldy.id.core.data.datasource.local.pref.PreferenceRepositoryImpl
 import com.rivaldy.id.core.data.datasource.remote.rest.ApiService
 import com.rivaldy.id.core.data.datasource.remote.rest.RestApiRepositoryImpl
+import com.rivaldy.id.core.data.paging.repository.StoryPagingRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,5 +26,8 @@ object RepositoryModule {
     fun providesRestApiRepository(apiService: ApiService) = RestApiRepositoryImpl(apiService)
 
     @Provides
-    fun providesDbRepository(appDatabase: AppDatabase) = DbRepositoryImpl(appDatabase)
+    fun providesDbRepository(storyDao: StoryDao) = DbRepositoryImpl(storyDao)
+
+    @Provides
+    fun providesStoryPagingRepository(appDatabase: AppDatabase, apiService: ApiService) = StoryPagingRepository(appDatabase, apiService)
 }

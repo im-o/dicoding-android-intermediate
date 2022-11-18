@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.rivaldy.id.core.utils.UtilExtensions.openActivity
 import com.rivaldy.id.dicoding.ui.auth.login.LoginActivity
-import com.rivaldy.id.dicoding.ui.home.HomeActivity
+import com.rivaldy.id.dicoding.ui.home.index.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

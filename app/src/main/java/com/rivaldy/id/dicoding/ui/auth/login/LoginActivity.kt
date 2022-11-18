@@ -5,6 +5,7 @@ import androidx.core.widget.doAfterTextChanged
 import com.rivaldy.id.commons.base.BaseActivity
 import com.rivaldy.id.commons.util.FormatterUtils.isValidEmail
 import com.rivaldy.id.commons.util.FormatterUtils.spannedHintFooterAuth
+import com.rivaldy.id.core.data.model.remote.login.LoginRequest
 import com.rivaldy.id.core.data.model.remote.login.LoginResult
 import com.rivaldy.id.core.data.network.DataResource
 import com.rivaldy.id.core.utils.UtilExceptions.handleApiError
@@ -15,7 +16,7 @@ import com.rivaldy.id.dicoding.databinding.ActivityLoginBinding
 import com.rivaldy.id.dicoding.ui.MainViewModel
 import com.rivaldy.id.dicoding.ui.auth.AuthViewModel
 import com.rivaldy.id.dicoding.ui.auth.register.RegisterActivity
-import com.rivaldy.id.dicoding.ui.home.HomeActivity
+import com.rivaldy.id.dicoding.ui.home.index.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,7 +34,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
     private fun initView() {
-        binding.hintFooterTV.text = spannedHintFooterAuth(this, getString(R.string.no_have_account), getString(R.string.sign_up))
+        binding.hintFooterTV.text = spannedHintFooterAuth(
+            this, getString(R.string.no_have_account), getString(R.string.sign_up)
+        )
     }
 
     private fun initObservers() {
@@ -55,7 +58,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         binding.loginMB.setOnClickListener {
             val email = binding.emailET.text.toString()
             val password = binding.passwordET.text.toString()
-            viewModel.loginUserApiCall(email, password)
+            viewModel.loginUserApiCall(LoginRequest(email, password))
         }
 
         binding.hintFooterTV.setOnClickListener {
